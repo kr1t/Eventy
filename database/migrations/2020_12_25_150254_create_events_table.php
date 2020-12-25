@@ -22,7 +22,6 @@ class CreateEventsTable extends Migration
             $table->integer('b_amount')->default(1);
             $table->datetime('b_start_date')->nullable();
             $table->datetime('b_end_date')->nullable();
-
             $table->integer('b_amount_noti')->default(1);
             $table->string('b_title')->nullable();
             $table->text('b_des')->nullable();
@@ -42,7 +41,7 @@ class CreateEventsTable extends Migration
             $table->string('bus')->nullable();
             $table->string('near_location')->nullable();
 
-            $table->bigIncrements('user_id');
+            $table->bigInteger('user_id');
 
             $table->timestamps();
         });
