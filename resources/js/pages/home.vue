@@ -16,6 +16,9 @@
 
     <!-- event recomments -->
     <div class="container mt-4">
+      <button class="btn btn-primary w-100">สร้างอีเว้นท์</button>
+      <hr />
+
       <div class="row">
         <div class="col">
           <h2>อีเว้นท์ <span>แนะนำ</span></h2>
@@ -160,14 +163,6 @@
               </div>
             </slide>
           </hooper>
-        </div>
-      </div>
-    </div>
-
-    <div class="container mt-4">
-      <div class="row">
-        <div class="col">
-          <Search />
         </div>
       </div>
     </div>
