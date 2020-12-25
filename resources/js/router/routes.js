@@ -12,6 +12,21 @@ export default [
   { path: '/email/verify/:id', name: 'verification.verify', component: page('auth/verification/verify.vue') },
   { path: '/email/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
 
+  { path: "/event", name: "Event", component: page('customer/Event.vue') },
+  { path: "/event/create", name: "CreateEvent", component: page('customer/CreateEvent.vue') },
+  { path: "/event/:id", name: "EventDetail", component: page('customer/EventDetail.vue') },
+  { path: "/profile", name: "Profile", component: page('customer/Profile.vue') },
+  { path: "/profile/ticket", name: "Ticket", component: page('customer/Ticket.vue') },
+  { path: "/profile/notification", name: "Notification", component: page('customer/Notification.vue') },
+  { path: "/profile/preorder", name: "PreOrder", component: page('customer/PreOrder.vue') },
+  { path: "/profile/setting", name: "Setting", component: page('customer/Setting.vue') },
+
+  { path: "/organizer", name: "HomeOrganizer",component: page('organizer/Home.vue') },
+  { path: "/organizer/register", name: "RegisterOrganizer",component: page('organizer/Register.vue') },
+
+  { path: "/event/order/:id", name: "EventOrderDetails", component: page('customer/OrderDetails.vue') },
+  { path: "/booth/detail/:id", name: "BoothDetails", component: page('shop/BoothDetails.vue') },
+
   { path: '/home', name: 'home', component: page('home.vue') },
   {
     path: '/settings',

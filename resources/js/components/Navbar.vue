@@ -27,7 +27,7 @@
             <router-link class="nav-link" to="/home"> หน้าแรก </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/"> อีเว้นท์ </router-link>
+            <router-link class="nav-link" to="/event"> อีเว้นท์ </router-link>
           </li>
 
           <li class="nav-item">
@@ -37,7 +37,7 @@
           </li>
 
           <li class="nav-item">
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" to="/organizer">
               <span class="d-none d-lg-inline-block">สำหรับ</span>ผู้จัดงาน
             </router-link>
           </li>
