@@ -15,21 +15,21 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+
+            $table->string('image1');
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
+            $table->string('image4')->nullable();
+
             $table->date('date');
             $table->time('time');
-            $table->string('tag');
+            $table->json('tag');
             $table->text('des');
-            $table->integer('b_amount')->default(1);
-            $table->datetime('b_start_date')->nullable();
-            $table->datetime('b_end_date')->nullable();
-            $table->integer('b_amount_noti')->default(1);
-            $table->string('b_title')->nullable();
-            $table->text('b_des')->nullable();
+
 
             $table->integer('t_amount')->default(1);
             $table->datetime('t_date')->nullable();
             $table->datetime('t_end_date')->nullable();
-            $table->integer('t_amount_noti')->default(1);
             $table->string('t_title')->nullable();
             $table->text('t_des')->nullable();
 
