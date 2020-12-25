@@ -1,0 +1,15 @@
+.card .title{
+	margin-top: 8px;
+	/*height: 30px;*/
+	height: 24px;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+@media (min-width: 992px){
+	.card .title{
+		height: 42px;
+		/*height: 48px;*/
+	}
+}

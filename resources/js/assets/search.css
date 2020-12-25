@@ -1,0 +1,17 @@
+.search .card{
+	border: unset;
+}
+.search .card > div{
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
+}
+.search .card input, .search .card select{
+	background-color: transparent;
+	border: unset;
+	border-bottom: 1px solid var(--color-main);
+	border-radius: unset;
+}
+.search .card input, .search .card input::placeholder , .search .card select{
+	color: var(--color-main);
+}
