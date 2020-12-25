@@ -31,7 +31,7 @@
           </li>
 
           <li class="nav-item">
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" to="/booth/detail/:id">
               <span class="d-none d-lg-inline-block">สำหรับ</span>ร้านค้า
             </router-link>
           </li>
