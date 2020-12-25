@@ -102,8 +102,6 @@
                 </p>
                 <div v-for="(round, index) in ticket.rounds" :key="round.id">
                   <label class="checkBoxCustom">
-                    <input type="radio" name="round" />
-                    <span class="checkmark"></span>
                     <p class="mb-0">รอบที่ {{ index + 1 }} : {{ round }}</p>
                   </label>
                 </div>
@@ -354,6 +352,7 @@
     <PurchaseDetails></PurchaseDetails>
   </div>
 </template>
+
 <script>
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
 import "hooper/dist/hooper.css";
@@ -530,3 +529,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.priceBottom{
+  opacity: 1;
+}
+</style>
