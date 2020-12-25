@@ -288,3 +288,17 @@ export default {
 		}
 	}
 </style>
+
+<style>
+.hooper {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto !important;
+  }
+.hooper img {
+
+    width: 100%;
+
+  }
+</style>

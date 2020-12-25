@@ -197,6 +197,7 @@
 	};
 </script>
 <style type="text/css" scoped>
+
 	.imgProfile img{
 		width: 120px;
 	}
