@@ -19,6 +19,16 @@ import "./assets/checkbox.css";
 import "./assets/login.css";
 import "./assets/testjaa.css";
 
+// Ly-tab
+// https://vuejsexamples.com/a-better-mobile-touch-swappable-reusable-component-for-vue-2/
+import LyTab from "ly-tab";
+Vue.use(LyTab);
+
+// wizard steps
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+Vue.use(VueFormWizard)
+
 /* eslint-disable no-new */
 new Vue({
   i18n,

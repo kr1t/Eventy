@@ -274,3 +274,17 @@ export default {
   },
 };
 </script>
+
+<style type="text/css" scoped>
+	.imgProfile img{
+		width: 120px;
+	}
+	.mw-240{
+		max-width: 240px;
+	}
+	@media (min-width: 992px){
+		.imgProfile img{
+			width: 160px;
+		}
+	}
+</style>
