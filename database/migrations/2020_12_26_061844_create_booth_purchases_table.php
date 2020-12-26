@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePurchasesTable extends Migration
+class CreateBoothPurchasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreatePurchasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('booth_purchases', function (Blueprint $table) {
             $table->id();
-            $table->json('times');
+            $table->json('type');
+            $table->json('size');
+            $table->json('extras');
+            $table->double('sum');
             $table->bigInteger('event_id');
             $table->bigInteger('user_id');
-            $table->double('sum');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
             $table->string('tel')->nullable();
             $table->text('des')->nullable();
-
             $table->timestamps();
         });
     }
@@ -36,6 +37,6 @@ class CreatePurchasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchases');
+        Schema::dropIfExists('booth_purchases');
     }
 }
