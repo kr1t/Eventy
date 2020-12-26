@@ -18,6 +18,7 @@ class CreateEventTicketsTable extends Migration
             $table->time('start')->nullable();
             $table->time('end')->nullable();
             $table->double('price')->nullable();
+            $table->json('times')->nullable();
             $table->bigInteger('event_id');
 
             $table->timestamps();

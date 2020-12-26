@@ -102,11 +102,11 @@
       <div class="row">
         <div class="col">
           <hooper class="" :settings="hooperNews">
-            <slide v-for="recomment in recomments" :key="recomment.id">
+            <slide v-for="recomment in events" :key="recomment.id">
               <div class="p-2">
                 <div class="card p-0 shadow">
                   <div class="imageBoxs w-100">
-                    <img :src="recomment.image" class="img-fluid" />
+                    <img :src="recomment.image1" class="img-fluid" />
                   </div>
                   <div class="p-2">
                     <div class="title">
@@ -121,7 +121,7 @@
                           />
                         </div>
                         <div class="ml-2">
-                          <p class="mb-0">{{ recomment.date }}</p>
+                          <p class="mb-0">{{ recomment.date_text }}</p>
                         </div>
                       </div>
                       <div class="d-flex align-items-center">
@@ -129,7 +129,7 @@
                           <img src="/assets/icon/time.png" class="img-fluid" />
                         </div>
                         <div class="ml-2">
-                          <p class="mb-0">{{ recomment.time }}</p>
+                          <p class="mb-0">{{ recomment.time_text }}</p>
                         </div>
                       </div>
                       <div class="d-flex align-items-center">
@@ -137,7 +137,7 @@
                           <img src="/assets/icon/pin.png" class="img-fluid" />
                         </div>
                         <div class="ml-2">
-                          <p class="mb-0">{{ recomment.place }}</p>
+                          <p class="mb-0">{{ recomment.map_name }}</p>
                         </div>
                       </div>
                     </div>
@@ -146,7 +146,7 @@
                     >
                       <div>
                         <h4 class="mb-0">
-                          {{ recomment.price }}
+                          {{ "$ticket" }}
                           <span class="small">฿/ตั๋ว</span>
                         </h4>
                       </div>
@@ -172,6 +172,8 @@
 <script>
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
 import "hooper/dist/hooper.css";
+
+import { mapGetters, mapActions } from "vuex";
 export default {
   middleware: "auth",
   data: function () {
@@ -266,6 +268,15 @@ export default {
       },
     };
   },
+  methods: {
+    ...mapActions({ fetchEvent: "event/fetch" }),
+  },
+  computed: {
+    ...mapGetters({ events: "event/events" }),
+  },
+  created() {
+    this.fetchEvent();
+  },
   components: {
     Slide,
     Hooper,
@@ -276,29 +287,27 @@ export default {
 </script>
 
 <style type="text/css" scoped>
-	.imgProfile img{
-		width: 120px;
-	}
-	.mw-240{
-		max-width: 240px;
-	}
-	@media (min-width: 992px){
-		.imgProfile img{
-			width: 160px;
-		}
-	}
+.imgProfile img {
+  width: 120px;
+}
+.mw-240 {
+  max-width: 240px;
+}
+@media (min-width: 992px) {
+  .imgProfile img {
+    width: 160px;
+  }
+}
 </style>
 
 <style>
 .hooper {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    height: auto !important;
-  }
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto !important;
+}
 .hooper img {
-
-    width: 100%;
-
-  }
+  width: 100%;
+}
 </style>

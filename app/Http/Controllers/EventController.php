@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\EventBoothType;
+
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -14,7 +16,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::with(['user', 'types', 'sizes', 'extras', 'tickets'])->paginate(10);
+        return ['items' => $events];
     }
 
     /**
@@ -35,7 +38,32 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $event = Event::create($request->all());
+
+        foreach ($request->type as $type) {
+            if ($type['name']) {
+                $type['status'] = 1;
+                $type['event_id'] = $event->id;
+                EventBoothType::create($type);
+            }
+        }
+
+        foreach ($request->size as $type) {
+            if ($type['name']) {
+                $type['status'] = 2;
+                $type['event_id'] = $event->id;
+                EventBoothType::create($type);
+            }
+        }
+        foreach ($request->extra as $type) {
+            if ($type['name']) {
+                $type['status'] = 3;
+                $type['event_id'] = $event->id;
+                EventBoothType::create($type);
+            }
+        }
+        return $request->all();
     }
 
     /**
