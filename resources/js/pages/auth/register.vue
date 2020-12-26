@@ -18,12 +18,22 @@
           </div>
 
           <div class="form-group">
-            <label for="name">ผู้ชาย</label>
+            <label for="name">username</label>
             <input
               type="text"
               class="form-control"
               placeholder="ชื่อ"
               v-model="form.name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="name">รุปโปรไฟล์</label>
+            <input
+              type="file"
+              class="form-control"
+              placeholder="ชื่อ"
+              @change="upload($event)"
             />
           </div>
           <div class="form-group">
@@ -62,7 +72,7 @@
 <script>
 import Form from "vform";
 import LoginWithGithub from "~/components/LoginWithGithub";
-
+import axios from "axios";
 export default {
   middleware: "guest",
 
@@ -79,12 +89,20 @@ export default {
       name: "",
       email: "",
       password: "",
+      image_url: "",
       password_confirmation: "",
     }),
     mustVerifyEmail: false,
   }),
 
   methods: {
+    async upload(e) {
+      let file = e.target.files[0];
+      let form = new FormData();
+      form.append("uploadFileObj", file);
+      const { data } = await axios.post("/api/image/upload", form);
+      this.form.image_url = data.url;
+    },
     async register() {
       // Register the user.
       const { data } = await this.form.post("/api/register");

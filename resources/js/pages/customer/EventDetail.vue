@@ -11,7 +11,9 @@
           <div class="d-flex justify-content-between">
             <div>
               <h2 class="mb-0">{{ event.title }}</h2>
-              <h4><span class="small">by Withcraft</span></h4>
+              <h4>
+                <span class="small">by {{ event.user.name }}</span>
+              </h4>
             </div>
             <div>
               <button class="btn btn-main d-flex">
@@ -121,11 +123,11 @@
               <div class="d-flex row">
                 <div
                   class="col-4 col-lg-3 mb-4 text-center"
-                  v-for="store in stores"
+                  v-for="store in event.booth_purchases"
                   :key="store.id"
                 >
-                  <img :src="store.image" class="img-fluid" />
-                  <p class="mb-0 mt-2">{{ store.name }}</p>
+                  <img :src="store.user.photo_url" class="img-fluid" />
+                  <p class="mb-0 mt-2">{{ store.user.name }}</p>
                 </div>
               </div>
             </div>
@@ -190,16 +192,16 @@
               <h4 class="text-main"><strong>ติดต่อ</strong></h4>
               <div class="d-flex row">
                 <div class="col-5">
-                  <img src="/user/07.svg" class="img-fluid" />
+                  <img :src="event.user.photo_url" class="img-fluid" />
                 </div>
                 <div class="col-7">
-                  <h4>Witchcraft</h4>
+                  <h4>{{ event.user.name }}</h4>
                   <div class="d-flex">
                     <div class="iconBtn">
                       <img src="/assets/icon/facebook.svg" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">facebook.com/Witchcraft</p>
+                      <p class="mb-0">facebook.com/{{ event.user.name }}</p>
                     </div>
                   </div>
                   <div class="d-flex">
@@ -207,7 +209,7 @@
                       <img src="/assets/icon/twitter.svg" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">twitter.com/Witchcraft</p>
+                      <p class="mb-0">twitter.com/{{ event.user.name }}</p>
                     </div>
                   </div>
                   <div class="d-flex">
@@ -215,7 +217,7 @@
                       <img src="/assets/icon/instagram.svg" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">instagram.com/Witchcraft</p>
+                      <p class="mb-0">instagram.com/{{ event.user.name }}</p>
                     </div>
                   </div>
                   <div class="d-flex">
@@ -223,7 +225,7 @@
                       <img src="/assets/icon/line.svg" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">Witchcraft</p>
+                      <p class="mb-0">{{ event.user.name }}</p>
                     </div>
                   </div>
                 </div>

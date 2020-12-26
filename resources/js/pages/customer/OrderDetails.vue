@@ -493,7 +493,6 @@ export default {
         event_id: this.id,
         sum: this.summ,
       });
-      this.$router.push("/event/" + this.id);
       this.$bvToast.toast("ซื้อตั๋วเข้างานสำเร็จ", {
         title: "ซื้อตั๋วเข้างานสำเร็จ",
         variant: "success",

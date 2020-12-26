@@ -19,7 +19,7 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'image_url'
     ];
 
     /**
@@ -56,7 +56,7 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      */
     public function getPhotoUrlAttribute()
     {
-        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '.jpg?s=200&d=mm';
+        return $this->image_url ? $this->image_url : 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '.jpg?s=200&d=mm';
     }
 
     /**

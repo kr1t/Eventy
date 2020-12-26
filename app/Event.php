@@ -35,6 +35,11 @@ class Event extends Model
     }
 
 
+    public function booth_purchases()
+    {
+        return $this->hasMany('App\BoothPurchase');
+    }
+
     public function price()
     {
         return $this->hasOne('App\EventTicket');

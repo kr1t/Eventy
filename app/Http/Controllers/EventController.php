@@ -17,7 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::with(['user', 'types', 'sizes', 'extras', 'tickets'])->latest()->paginate(10);
+        $events = Event::with(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases'])->latest()->paginate(10);
         return ['items' => $events];
     }
 
@@ -85,7 +85,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $event->load(['user', 'types', 'sizes', 'extras', 'tickets']);
+        $event->load(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases', 'booth_purchases.user']);
         return ["item" => $event];
     }
 
