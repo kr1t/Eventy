@@ -38,6 +38,7 @@ class CreateEventsTable extends Migration
             $table->string('near_location')->nullable();
 
             $table->bigInteger('user_id');
+            $table->softDeletes();
 
             $table->timestamps();
         });

@@ -22,6 +22,15 @@
                 </div>
                 <p class="mb-0 ml-2">สนใจเข้าร่วม</p>
               </button>
+
+              <button
+                class="btn btn-main d-flex mt-2"
+                v-if="event.canDel"
+                @click="del()"
+              >
+                <div class="iconBtn">-</div>
+                <p class="mb-0 ml-2">ลบอีเว้นท์ทิ้ง (มีแต่คุณที่มองเห็น)</p>
+              </button>
             </div>
           </div>
           <div class="d-flex align-items-center">
@@ -355,6 +364,8 @@ import "hooper/dist/hooper.css";
 import PurchaseDetails from "~/components/Events/PurchaseDetails.vue";
 import { mapGetters, mapActions } from "vuex";
 import { maxBy } from "lodash";
+import axios from "axios";
+
 export default {
   computed: {
     ...mapGetters({
@@ -525,6 +536,15 @@ export default {
         },
         500
       );
+    },
+    async del() {
+      var r = confirm("คุณแน่ใจที่จะลบใช่หรือไม่");
+      if (r == true) {
+        const { data } = await axios.delete("/api/events/" + this.id);
+        console.log(data);
+        this.$router.push("/home");
+      } else {
+      }
     },
     ...mapActions({ show: "event/show" }),
     buyTicket() {

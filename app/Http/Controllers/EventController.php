@@ -85,7 +85,11 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        $user = request()->user();
         $event->load(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases', 'booth_purchases.user']);
+
+        $event->canDel = $event->user->id ==
+            $user->id;
         return ["item" => $event];
     }
 
@@ -120,6 +124,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+        return time();
     }
 }

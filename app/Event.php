@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
 {
+    use SoftDeletes;
     protected $appends = ['date_text', 'time_text', 'price_x'];
     protected $casts = [
         'tag' => 'array',
