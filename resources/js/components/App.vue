@@ -63,3 +63,18 @@ export default {
   },
 };
 </script>
+
+<style>
+ @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
+  .content-menuUser{
+    width: calc(100% - 70px);
+    margin-left: 60px;
+    padding: 1.5rem 15px;
+  }
+  @media (min-width: 992px){
+    .content-menuUser{
+      width: calc(100% - 260px);
+      margin-left: 260px;
+    }
+  }
+</style>

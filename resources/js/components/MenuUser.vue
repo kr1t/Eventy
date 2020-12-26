@@ -68,7 +68,7 @@ export default {
   },
 };
 </script>
-<style type="text/css" scoped>
+<style type="text/css" >
 .menuLeft {
   position: fixed;
   left: 0px;
@@ -175,7 +175,7 @@ export default {
   .menuLeft {
     width: 260px;
     left: 0;
-    top: 54px;
+    top: 70px;
     bottom: 0;
   }
   .menuLeft .menuLeftIcon {
