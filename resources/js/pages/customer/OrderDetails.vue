@@ -7,6 +7,7 @@
       title=""
       subtitle=""
       stepSize="xs"
+      @on-complete="onComplete"
     >
       <tab-content title="รายละเอียดตั๋ว">
         <div class="row">
@@ -289,7 +290,7 @@
               </p>
               <div class="row">
                 <div class="col-lg-6">
-                  <img :src="order.image" class="custom-success-img" />
+                  <img :src="order.image1" class="custom-success-img" />
                 </div>
                 <div class="col-lg-6 my-2">
                   <h2 class="text-main">
@@ -356,6 +357,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { sumBy } from "lodash";
+import axios from "axios";
 export default {
   name: "OrderDetails",
   computed: {
@@ -480,6 +482,13 @@ export default {
 
   methods: {
     ...mapActions({ show: "event/show" }),
+    async onComplete() {
+      const { data } = await axios.post("/api/purchases", {
+        times: this.selectedTickets,
+        event_id: this.id,
+      });
+      console.log(data);
+    },
 
     setDetails() {
       let res = this.tmp_orders.find((order) => {
