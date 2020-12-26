@@ -15,6 +15,7 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
 
             $table->string('image1');
             $table->string('image2')->nullable();
@@ -23,15 +24,10 @@ class CreateEventsTable extends Migration
 
             $table->date('date');
             $table->time('time');
-            $table->json('tag');
+            $table->time('end_time');
+
+            $table->json('tag')->nullable();
             $table->text('des');
-
-
-            $table->integer('t_amount')->default(1);
-            $table->datetime('t_date')->nullable();
-            $table->datetime('t_end_date')->nullable();
-            $table->string('t_title')->nullable();
-            $table->text('t_des')->nullable();
 
             $table->text('map_name')->nullable();
             $table->text('map_address')->nullable();

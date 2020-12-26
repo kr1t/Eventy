@@ -36,4 +36,6 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
 
+Route::resource('events', 'EventController');
+
 Route::post('image/upload', 'UploadController@imageUploadPost');
