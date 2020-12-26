@@ -176,7 +176,7 @@
                 />
               </div>
 
-              ประเภทสินค้า
+              <h6 class="sub-title-create">ประเภทสินค้า</h6>
               <div v-for="(item, index) in type" :key="item.id">
                 <input
                   class="input-create"
@@ -194,7 +194,7 @@
                 <button @click="aType()" class="btn button-create">+</button>
               </div>
 
-              ขนาดบูธ
+              <h6 class="sub-title-create">ขนาดบูธ</h6>
               <div v-for="(item, index) in size" :key="item.id">
                 <input
                   class="input-create"
@@ -219,7 +219,7 @@
                 <button @click="aSize()" class="btn button-create">+</button>
               </div>
 
-              อุปกรณ์ที่ต้องการเพิ่ม
+              <h6 class="sub-title-create">อุปกรณ์ที่ต้องการเพิ่ม</h6>
               <div v-for="(item, index) in extra" :key="item.id">
                 <input
                   class="input-create"
@@ -522,7 +522,10 @@ img {
 .title-create {
   margin-bottom: 20px;
 }
-.badge {
+.sub-title-create{
+  margin-top: 25px;
+}
+.badge{
   margin-right: 10px !important;
 }
 .img-upload {
