@@ -96,7 +96,7 @@
               type="text"
               class="form-control"
               placeholder="ระบุชื่องาน"
-              v-model="form.name"
+              v-model="form.title"
             />
             <div class="new-event-icon-input float-left mt-4">
               <div class="icon-new float-left">
@@ -107,6 +107,7 @@
                   type="date"
                   class="form-control"
                   placeholder="กรุณาระบุวันที่"
+                  v-model="form.date"
                 />
               </div>
             </div>
@@ -121,6 +122,14 @@
                   type="time"
                   class="form-control"
                   placeholder="กรุณาระบุเวลา"
+                  v-model="form.time"
+                />
+                ถึง
+                <input
+                  type="time"
+                  class="form-control"
+                  placeholder="กรุณาระบุเวลาสิ้นสุด"
+                  v-model="form.end_time"
                 />
               </div>
             </div>
@@ -149,19 +158,22 @@
               <h5 class="title-create">การจองบูธ</h5>
               <div class="form-group">
                 <label for=""> เวลาเริ่มต้น </label>
-                <b-form-datepicker
-                  id="example-datepicker"
-                  class="d-fixed mt-2"
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="กรุณาระบุวันที่"
                   v-model="form.b_start"
-                ></b-form-datepicker>
+                />
               </div>
               <div class="form-group">
                 <label for=""> เวลาสิ้นสุด </label>
-                <b-form-datepicker
-                  id="example-datepicker"
-                  class="mb-2"
+
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="กรุณาระบุวันที่"
                   v-model="form.b_end"
-                ></b-form-datepicker>
+                />
               </div>
 
               ประเภทสินค้า
@@ -232,19 +244,21 @@
               <h5 class="title-create">รายละเอียดเกี่ยวกับตั๋วเข้างาน</h5>
               <div class="form-group">
                 <label for=""> เวลาเริ่มต้น </label>
-                <b-form-datepicker
-                  id="example-datepicker"
-                  class="mb-2"
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="กรุณาระบุวันที่"
                   v-model="form.t_start"
-                ></b-form-datepicker>
+                />
               </div>
               <div class="form-group">
                 <label for=""> เวลาสิ้นสุด </label>
-                <b-form-datepicker
-                  id="example-datepicker"
-                  class="mb-2"
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="กรุณาระบุวันที่"
                   v-model="form.t_end"
-                ></b-form-datepicker>
+                />
               </div>
 
               <div>
@@ -282,7 +296,7 @@
                     <input
                       class="input-create"
                       type="text"
-                      placeholder="ราคา"
+                      placeholder="จำนวน"
                       v-model="form.prices[index].times[i].amount"
                     />
                     <button

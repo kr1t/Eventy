@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12 col-lg-6">
           <div class="sticky-top h-full" style="top: 54px">
-            <img :src="image" />
+            <img :src="event.image1" />
           </div>
         </div>
         <div class="col-12 col-lg-6 py-4 pb-4" v-if="event">
@@ -112,7 +112,7 @@
               </p>
               <p class="mb-0">
                 เปิดจำหน่ายบัตรวันที่ {{ event.date_text }} เวลา
-                {{ event.date_text }}
+                {{ event.time_text }}
               </p>
             </div>
             <hr class="w-100" />
@@ -330,6 +330,9 @@
             <div class="card px-4 py-3 rounded-pill mx-4 border-0 shadow">
               <div class="d-flex justify-content-between align-items-center">
                 <h4 class="mb-0 text-main">ราคา {{ event.price_x }} บาท</h4>
+                <router-link :to="`/booth/detail/${id}`" class="btn btn-main">
+                  <button class="btn btn-main">จองบูธ</button>
+                </router-link>
                 <router-link :to="`/event/order/${id}`" class="btn btn-main">
                   <button class="btn btn-main">ซื้อตั๋ว</button>
                 </router-link>

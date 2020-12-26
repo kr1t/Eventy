@@ -40,7 +40,10 @@ class EventController extends Controller
     public function store(Request $request)
     {
 
-        $event = Event::create($request->all());
+        $user = $request->user();
+        $req = $request->all();
+        $req['user_id'] = $user->id;
+        $event = Event::create($req);
 
         foreach ($request->type as $type) {
             if ($type['name']) {

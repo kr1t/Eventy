@@ -73,7 +73,7 @@
                       >
                         <option value="0">0</option>
                         <option v-for="(num, i_n) in round.amount" :key="i_n">
-                          {{ num }}
+                          {{ i_n + 1 }}
                         </option>
                       </select>
                     </div>
@@ -283,7 +283,7 @@
               <h2 class="text-center">{{ "ชำระเงินเสร็จสิ้น" }}</h2>
               <p class="text-center text-muted">
                 ตรวจสอบการชำระเงิน
-                <a href="#" class="text-main"> คลิ๊กที่นี้</a>
+                <a href="/profile/ticket" class="text-main"> คลิ๊กที่นี้</a>
               </p>
               <p class="text-center text-muted">
                 หากไม่ได้รับการยืนยันกรุณาติดต่อภายใน 24 ชม.
@@ -318,7 +318,7 @@
                       <img src="/assets/icon/pin.png" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">{{ order.place }}</p>
+                      <p class="mb-0">{{ order.map_name }}</p>
                     </div>
                   </div>
                 </div>
