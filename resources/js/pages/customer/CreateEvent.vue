@@ -11,13 +11,14 @@
             type="file"
             name="img1"
             id="img1"
-            style="width: 0; height: 0"
+            style="width: 0; height: 0; overflow: hidden; "
             @change="upload($event, 'image1')"
           />
 
-          <label for="img1">
+          <label  for="img1">
             <img :src="form.image1" alt="" width="100%" height="100%" />
             <img
+              class="img-upload"
               src="https://icons-for-free.com/iconfiles/png/512/plus+icon-1320184416519705957.png"
               width="50"
             />
@@ -30,13 +31,14 @@
                 type="file"
                 name="img2"
                 id="img2"
-                style="width: 0; height: 0"
+                style="width: 0; height: 0; overflow: hidden;"
                 @change="upload($event, 'image2')"
               />
 
               <label for="img2">
                 <img :src="form.image2" alt="" width="100%" height="100%" />
                 <img
+                  class="img-upload"
                   src="https://icons-for-free.com/iconfiles/png/512/plus+icon-1320184416519705957.png"
                   width="50"
                 />
@@ -50,13 +52,14 @@
                   type="file"
                   name="img3"
                   id="img3"
-                  style="width: 0; height: 0"
+                  style="width: 0; height: 0; overflow: hidden;"
                   @change="upload($event, 'image3')"
                 />
 
                 <label for="img3">
                   <img :src="form.image3" alt="" width="100%" height="100%" />
                   <img
+                    class="img-upload"
                     src="https://icons-for-free.com/iconfiles/png/512/plus+icon-1320184416519705957.png"
                     width="50"
                   />
@@ -70,13 +73,14 @@
                 type="file"
                 name="img4"
                 id="img4"
-                style="width: 0; height: 0"
+                style="width: 0; height: 0; overflow: hidden;"
                 @change="upload($event, 'image4')"
               />
 
               <label for="img4">
                 <img :src="form.image4" alt="" width="100%" height="100%" />
                 <img
+                  class="img-upload"
                   src="https://icons-for-free.com/iconfiles/png/512/plus+icon-1320184416519705957.png"
                   width="50"
                 />
@@ -94,7 +98,7 @@
               placeholder="ระบุชื่องาน"
               v-model="form.name"
             />
-            <div class="new-event-icon-input float-left">
+            <div class="new-event-icon-input float-left mt-4">
               <div class="icon-new float-left">
                 <i class="far fa-calendar-alt"></i>
               </div>
@@ -108,7 +112,7 @@
             </div>
             <div class="clear-fix"></div>
 
-            <div class="new-event-icon-input float-left mt-4">
+            <div class="new-event-icon-input float-left mt-2">
               <div class="icon-new float-left">
                 <i class="fas fa-clock"></i>
               </div>
@@ -122,7 +126,12 @@
             </div>
 
             <label class="mt-3">Tags</label>
-            <b-form-tags input-id="tags-basic" v-model="form.tag"></b-form-tags>
+            <b-form-tags
+            input-id="tags-basic"
+            tag-variant="primary"
+            tag-pills
+            separator=" "
+            v-model="form.tag"></b-form-tags>
 
             <div class="e-info mt-3">
               <h5>ข้อมูลอีเว้นท์</h5>
@@ -136,12 +145,12 @@
             <hr />
 
             <div class="b-info mt-3">
-              <h5>การจองบูธ</h5>
+              <h5 class="title-create">การจองบูธ</h5>
               <div class="form-group">
                 <label for=""> เวลาเริ่มต้น </label>
                 <b-form-datepicker
                   id="example-datepicker"
-                  class="mb-2"
+                  class="d-fixed mt-2"
                   v-model="form.b_start"
                 ></b-form-datepicker>
               </div>
@@ -157,62 +166,69 @@
               ประเภทสินค้า
               <div v-for="(item, index) in type" :key="item.id">
                 <input
+                  class="input-create"
                   type="text"
                   v-model="form.type[index].name"
                   placeholder="ชื่อ"
                 />
                 <input
+                  class="input-create"
                   type="text"
                   v-model="form.type[index].price"
                   placeholder="ราคา"
                 />
 
-                <button @click="aType()">+</button>
+                <button @click="aType()" class="button-create">+</button>
               </div>
 
               ขนาดบูธ
               <div v-for="(item, index) in size" :key="item.id">
                 <input
+                  class="input-create"
                   type="text"
                   v-model="form.size[index].name"
                   placeholder="ชื่อ"
                 />
                 <input
+                  class="input-create"
                   type="text"
                   v-model="form.size[index].price"
                   placeholder="ราคา"
                 />
 
                 <input
+                  class="input-create"
                   type="text"
                   v-model="form.size[index].amount"
                   placeholder="จำนวน"
                 />
 
-                <button @click="aSize()">+</button>
+                <button @click="aSize()" class="button-create">+</button>
               </div>
 
               อุปกรณ์ที่ต้องการเพิ่ม
               <div v-for="(item, index) in extra" :key="item.id">
                 <input
+                  class="input-create"
                   type="text"
                   v-model="form.extra[index].name"
                   placeholder="ชื่อ"
                 />
                 <input
+                  class="input-create"
                   type="text"
                   v-model="form.extra[index].price"
                   placeholder="ราคา"
                 />
 
-                <button @click="aExtra()">+</button>
+                <button @click="aExtra()" class="button-create">+</button>
               </div>
             </div>
 
             <!-- จองบูธ -->
-
+            <hr>
             <div class="e-event mt-4">
-              <h5>รายละเอียดเกี่ยวกับตั๋วเข้างาน</h5>
+              <h5 class="title-create">รายละเอียดเกี่ยวกับตั๋วเข้างาน</h5>
               <div class="form-group">
                 <label for=""> เวลาเริ่มต้น </label>
                 <b-form-datepicker
@@ -233,6 +249,7 @@
               <div>
                 <div class="card p-2" v-for="(p, index) in price" :key="index">
                   <input
+                    class="input-create"
                     type="text"
                     placeholder="ราคา"
                     v-model="form.prices[index].price"
@@ -245,52 +262,63 @@
                   >
                     เวลาเริ่ม
                     <input
+                      class="input-create"
                       type="time"
                       placeholder=""
                       v-model="form.prices[index].times[i].start"
                     />
                     เวลาสิ้นสุด
                     <input
+                      class="input-create"
                       type="time"
                       placeholder=""
                       v-model="form.prices[index].times[i].end"
                     />
                     <input
+                      class="input-create"
                       type="text"
                       placeholder="ราคา"
                       v-model="form.prices[index].times[i].amount"
                     />
-                    <button @click="aDetail(index)">เพิ่มเวลาอื่นๆ</button>
+                    <button @click="aDetail(index)" class="button-create-text">เพิ่มเวลาอื่นๆ</button>
                   </div>
                 </div>
-                <button @click="aPrice()">เพิ่มราคา</button>
+                <button @click="aPrice()" class="button-create-text">เพิ่มราคา</button>
               </div>
             </div>
 
+            <hr>
+            <div class="e-event mt-4">
+              <h5 class="title-create">แผนที่การเดินทาง</h5>
             <div>
               <input
+                class="input-create"
                 type="text"
                 placeholder="ชื่อสถานที่"
                 v-model="form.map_name"
               />
               <input
+                class="input-create"
                 type="text"
                 placeholder="รายละสถานที่"
                 v-model="form.map_address"
               />
               <input
+                class="input-create"
                 type="text"
                 placeholder="google_map_url"
                 v-model="form.google_map_url"
               />
-              <input type="text" placeholder="mrt" v-model="form.mrt" />
-              <input type="text" placeholder="bts" v-model="form.bts" />
-              <input type="text" placeholder="bus" v-model="form.bus" />
+              <input class="input-create" type="text" placeholder="mrt" v-model="form.mrt" />
+              <input class="input-create" type="text" placeholder="bts" v-model="form.bts" />
+              <input class="input-create" type="text" placeholder="bus" v-model="form.bus" />
               <input
+                class="input-create"
                 type="text"
                 placeholder="near_location"
                 v-model="form.near_location"
               />
+            </div>
             </div>
           </div>
         </div>
@@ -361,6 +389,14 @@ img {
 }
 </style>
 <style scoped>
+.d-fixed{
+  font-weight: 300 !important;
+  font-size: 12px !important;
+}
+#example-datepicker{
+  font-weight: 300 !important;
+  font-size: 12px !important;
+}
 .new-event-img {
   width: 100%;
   height: 600px;
@@ -395,4 +431,45 @@ img {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.dropdown-menu{
+  font-size: 14px;
+}
+.input-create{
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.button-create{
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid rgb(233, 110, 110);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: rgb(233, 110, 110);
+  color: #fff;
+  font-size: 20px;
+}
+.button-create-text{
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgb(233, 110, 110);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: rgb(233, 110, 110);
+  color: #fff;
+}
+.title-create{
+  margin-bottom: 20px;
+}
+.badge{
+  margin-right: 10px !important;
+}
+.img-upload{
+  position: absolute;
+  margin: -30px -50px;
+
+  }
 </style>
