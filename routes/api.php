@@ -38,5 +38,6 @@ Route::group(['middleware' => 'guest:api'], function () {
 
 Route::resource('events', 'EventController');
 Route::resource('purchases', 'PurchaseController');
+Route::resource('booth_purchases', 'BoothPurchaseController');
 
 Route::post('image/upload', 'UploadController@imageUploadPost');

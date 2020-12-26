@@ -423,7 +423,12 @@ export default {
     },
     async create() {
       const { data } = await axios.post("/api/events", this.form);
-
+      this.$router.push("/event/" + data.id);
+      this.$bvToast.toast("สร้าง อีเว้นท์สำเร็จ", {
+        title: "สร้าง อีเว้นท์สำเร็จ",
+        variant: "success",
+        solid: true,
+      });
       console.log(data);
     },
     async upload(e, name) {
@@ -522,10 +527,10 @@ img {
 .title-create {
   margin-bottom: 20px;
 }
-.sub-title-create{
+.sub-title-create {
   margin-top: 25px;
 }
-.badge{
+.badge {
   margin-right: 10px !important;
 }
 .img-upload {

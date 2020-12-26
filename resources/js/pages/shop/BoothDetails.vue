@@ -7,6 +7,7 @@
       title=""
       subtitle=""
       stepSize="xs"
+      @on-change="onComplete"
     >
       <tab-content title="ข้อมูลทั่วไป">
         <div class="row">
@@ -489,6 +490,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 import { sumBy } from "lodash";
 export default {
@@ -548,6 +550,28 @@ export default {
     this.show(this.id);
   },
   methods: {
+    async onComplete(prevIndex, nextIndex) {
+      console.log(prevIndex, nextIndex);
+
+      if (nextIndex <= 1) {
+        return 0;
+      }
+      const { data } = await axios.post("/api/booth_purchases", {
+        type: this.tmp_booth.types[this.selectedItem],
+        size: this.tmp_booth.sizes[this.selectedBooth],
+        extras: this.extras,
+        event_id: this.id,
+        sum: this.summ,
+      });
+
+      this.$router.push("/event/" + this.id);
+      this.$bvToast.toast("จองบูธสำเร็จ", {
+        title: "จองบูธสำเร็จ",
+        variant: "success",
+        solid: true,
+      });
+      console.log(data);
+    },
     ...mapActions({ show: "event/show" }),
 
     onFileChange(e, i) {

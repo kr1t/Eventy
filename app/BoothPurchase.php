@@ -4,14 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Purchase extends Model
+class BoothPurchase extends Model
 {
-
     protected $fillable = [
-        'times', 'event_id', 'user_id', 'first_name', 'last_name', 'email', 'tel', 'des', 'sum'
+        'type', 'size', 'extras', 'event_id', 'user_id', 'first_name', 'last_name', 'email', 'tel', 'des', 'sum'
     ];
+
     protected $casts = [
-        'times' => 'array',
+        'type' => 'array',
+        'size' => 'array',
+        'extras' => 'array',
     ];
 
     public function event()
