@@ -16,7 +16,9 @@
 
     <!-- event recomments -->
     <div class="container mt-4">
-      <button class="btn btn-primary w-100">สร้างอีเว้นท์</button>
+      <router-link exact to="/event/create">
+      <button class="btn btn-main-create w-100">สร้างอีเว้นท์</button>
+      </router-link>
       <hr />
 
       <div class="row">
@@ -309,5 +311,20 @@ export default {
 }
 .hooper img {
   width: 100%;
+}
+.btn-main-create{
+  width: 300px;
+  height: 45px;
+  background: var(--color-gradient);
+	color: #fff;
+	font-size: clamp(12px, 2vw, 14px);
+	padding-left: 15px;
+	padding-right: 20px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border-radius: 20px;
+  transition: .5s;
+  font-size: 22px;
+
 }
 </style>
