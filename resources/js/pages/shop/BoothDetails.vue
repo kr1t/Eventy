@@ -693,4 +693,57 @@ input {
   display: none;
   overflow: hidden;
 }
+.custom-img {
+  width: 100%;
+  min-height: 300px;
+  max-height: auto;
+  float: left;
+  margin: 3px;
+  padding: 3px;
+}
+.custom-success-img {
+  width: 250px;
+  min-height: 200px;
+  max-height: auto;
+  float: right;
+  margin: 3px;
+  padding: 3px;
+}
+.custom-btn-img {
+  width: 130px;
+  height: 60px;
+  float: center;
+  margin: 3px;
+  padding: 3px;
+}
+input {
+  background-color: transparent;
+  border: unset;
+  border-bottom: 1px solid #d4d4d4;
+  border-radius: unset;
+}
+.btn-outline-primary {
+  color: #000;
+}
+.btn-outline-primary:hover {
+  color: #000;
+  background-color: #ffffff00;
+}
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-primary.dropdown-toggle {
+  color: #000;
+  background-color: #a3222200;
+}
+.form-control:focus,
+.btn:focus,
+.btn.focus {
+  border-color: #e75e38;
+  box-shadow: unset;
+}
+.famix {
+  color: #50da50;
+  font-size: 150px;
+  margin: 30px;
+}
 </style>
