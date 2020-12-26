@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\purchase;
+use App\Purchase;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -12,9 +12,17 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+        foreach ($user->purchases as $p) {
+            $p->event;
+            $p->user;
+        }
+
+
+
+        return $user;
     }
 
     /**
@@ -35,7 +43,11 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+        $req = $request->all();
+        $req['user_id'] = $user->id;
+        $p = Purchase::create($req);
+        return $p;
     }
 
     /**

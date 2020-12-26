@@ -16,6 +16,16 @@
               v-model="form.email"
             />
           </div>
+
+          <div class="form-group">
+            <label for="name">ผู้ชาย</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="ชื่อ"
+              v-model="form.name"
+            />
+          </div>
           <div class="form-group">
             <label for="password">รหัสผ่าน</label>
             <input

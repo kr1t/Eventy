@@ -7,7 +7,7 @@
       title=""
       subtitle=""
       stepSize="xs"
-      @on-complete="onComplete"
+      @on-change="onComplete"
     >
       <tab-content title="รายละเอียดตั๋ว">
         <div class="row">
@@ -482,7 +482,12 @@ export default {
 
   methods: {
     ...mapActions({ show: "event/show" }),
-    async onComplete() {
+    async onComplete(prevIndex, nextIndex) {
+      console.log(prevIndex, nextIndex);
+
+      if (nextIndex <= 1) {
+        return 0;
+      }
       const { data } = await axios.post("/api/purchases", {
         times: this.selectedTickets,
         event_id: this.id,

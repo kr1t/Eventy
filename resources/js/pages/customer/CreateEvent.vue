@@ -11,11 +11,11 @@
             type="file"
             name="img1"
             id="img1"
-            style="width: 0; height: 0; overflow: hidden; "
+            style="width: 0; height: 0; overflow: hidden"
             @change="upload($event, 'image1')"
           />
 
-          <label  for="img1">
+          <label for="img1">
             <img :src="form.image1" alt="" width="100%" height="100%" />
             <img
               class="img-upload"
@@ -31,7 +31,7 @@
                 type="file"
                 name="img2"
                 id="img2"
-                style="width: 0; height: 0; overflow: hidden;"
+                style="width: 0; height: 0; overflow: hidden"
                 @change="upload($event, 'image2')"
               />
 
@@ -52,7 +52,7 @@
                   type="file"
                   name="img3"
                   id="img3"
-                  style="width: 0; height: 0; overflow: hidden;"
+                  style="width: 0; height: 0; overflow: hidden"
                   @change="upload($event, 'image3')"
                 />
 
@@ -73,7 +73,7 @@
                 type="file"
                 name="img4"
                 id="img4"
-                style="width: 0; height: 0; overflow: hidden;"
+                style="width: 0; height: 0; overflow: hidden"
                 @change="upload($event, 'image4')"
               />
 
@@ -127,11 +127,12 @@
 
             <label class="mt-3">Tags</label>
             <b-form-tags
-            input-id="tags-basic"
-            tag-variant="primary"
-            tag-pills
-            separator=" "
-            v-model="form.tag"></b-form-tags>
+              input-id="tags-basic"
+              tag-variant="primary"
+              tag-pills
+              separator=" "
+              v-model="form.tag"
+            ></b-form-tags>
 
             <div class="e-info mt-3">
               <h5>ข้อมูลอีเว้นท์</h5>
@@ -226,7 +227,7 @@
             </div>
 
             <!-- จองบูธ -->
-            <hr>
+            <hr />
             <div class="e-event mt-4">
               <h5 class="title-create">รายละเอียดเกี่ยวกับตั๋วเข้างาน</h5>
               <div class="form-group">
@@ -234,7 +235,7 @@
                 <b-form-datepicker
                   id="example-datepicker"
                   class="mb-2"
-                  v-model="form.b_start"
+                  v-model="form.t_start"
                 ></b-form-datepicker>
               </div>
               <div class="form-group">
@@ -242,12 +243,16 @@
                 <b-form-datepicker
                   id="example-datepicker"
                   class="mb-2"
-                  v-model="form.b_end"
+                  v-model="form.t_end"
                 ></b-form-datepicker>
               </div>
 
               <div>
-                <div class="card p-2 mb-3" v-for="(p, index) in price" :key="index">
+                <div
+                  class="card p-2 mb-3"
+                  v-for="(p, index) in price"
+                  :key="index"
+                >
                   <input
                     class="input-create"
                     type="text"
@@ -280,47 +285,75 @@
                       placeholder="ราคา"
                       v-model="form.prices[index].times[i].amount"
                     />
-                    <button @click="aDetail(index)" class="btn button-create-text">เพิ่มเวลาอื่นๆ</button>
-                    <hr>
+                    <button
+                      @click="aDetail(index)"
+                      class="btn button-create-text"
+                    >
+                      เพิ่มเวลาอื่นๆ
+                    </button>
+                    <hr />
                   </div>
                 </div>
-                <button @click="aPrice()" class="btn button-create-text">เพิ่มราคา</button>
+                <button @click="aPrice()" class="btn button-create-text">
+                  เพิ่มราคา
+                </button>
               </div>
             </div>
 
-            <hr>
+            <hr />
             <div class="e-event mt-4">
               <h5 class="title-create">แผนที่การเดินทาง</h5>
-            <div>
-              <input
-                class="input-create"
-                type="text"
-                placeholder="ชื่อสถานที่"
-                v-model="form.map_name"
-              />
-              <input
-                class="input-create"
-                type="text"
-                placeholder="รายละสถานที่"
-                v-model="form.map_address"
-              />
-              <input
-                class="input-create"
-                type="text"
-                placeholder="google_map_url"
-                v-model="form.google_map_url"
-              />
-              <input class="input-create" type="text" placeholder="mrt" v-model="form.mrt" />
-              <input class="input-create" type="text" placeholder="bts" v-model="form.bts" />
-              <input class="input-create" type="text" placeholder="bus" v-model="form.bus" />
-              <input
-                class="input-create"
-                type="text"
-                placeholder="near_location"
-                v-model="form.near_location"
-              />
-              <hr class="mb-5">
-            </div>
+              <div>
+                <input
+                  class="input-create"
+                  type="text"
+                  placeholder="ชื่อสถานที่"
+                  v-model="form.map_name"
+                />
+                <input
+                  class="input-create"
+                  type="text"
+                  placeholder="รายละสถานที่"
+                  v-model="form.map_address"
+                />
+                <input
+                  class="input-create"
+                  type="text"
+                  placeholder="Google Map Url"
+                  v-model="form.google_map_url"
+                />
+                <input
+                  class="input-create"
+                  type="text"
+                  placeholder="mrt"
+                  v-model="form.mrt"
+                />
+                <input
+                  class="input-create"
+                  type="text"
+                  placeholder="bts"
+                  v-model="form.bts"
+                />
+                <input
+                  class="input-create"
+                  type="text"
+                  placeholder="bus"
+                  v-model="form.bus"
+                />
+                <input
+                  class="input-create"
+                  type="text"
+                  placeholder="สถานที่ใกล้เคียง"
+                  v-model="form.near_location"
+                />
+                <hr class="mb-2" />
+
+                <button @click="create()" class="btn button-create-text w-100">
+                  บันทึก
+                </button>
+
+                <hr class="mb-5" />
+              </div>
             </div>
           </div>
         </div>
@@ -374,6 +407,11 @@ export default {
     aDetail(index) {
       this.form.prices[index].times.push({ start: "", end: "", amount: "" });
     },
+    async create() {
+      const { data } = await axios.post("/api/events", this.form);
+
+      console.log(data);
+    },
     async upload(e, name) {
       let file = e.target.files[0];
       let form = new FormData();
@@ -391,11 +429,11 @@ img {
 }
 </style>
 <style scoped>
-.d-fixed{
+.d-fixed {
   font-weight: 300 !important;
   font-size: 12px !important;
 }
-#example-datepicker{
+#example-datepicker {
   font-weight: 300 !important;
   font-size: 12px !important;
 }
@@ -433,55 +471,54 @@ img {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.dropdown-menu{
+.dropdown-menu {
   font-size: 14px;
 }
-.input-create{
+.input-create {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.button-create{
+.button-create {
   width: 35px;
   height: 35px;
   background: var(--color-gradient);
-	color: #fff;
-	font-size: clamp(12px, 2vw, 14px);
-	padding-left: 15px;
-	padding-right: 20px;
-	padding-top: 4px;
-	padding-bottom: 4px;
-	border-radius: 20px;
-	transition: .5s;
+  color: #fff;
+  font-size: clamp(12px, 2vw, 14px);
+  padding-left: 15px;
+  padding-right: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 20px;
+  transition: 0.5s;
 }
-.button-create-text{
+.button-create-text {
   background: var(--color-gradient);
-	color: #fff;
-	font-size: clamp(12px, 2vw, 14px);
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 4px;
-	padding-bottom: 4px;
-	border-radius: 20px;
-	transition: .5s;
+  color: #fff;
+  font-size: clamp(12px, 2vw, 14px);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 20px;
+  transition: 0.5s;
 }
-.title-create{
+.title-create {
   margin-bottom: 20px;
 }
-.badge{
+.badge {
   margin-right: 10px !important;
 }
-.img-upload{
+.img-upload {
   position: absolute;
   margin: -30px;
 }
 hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 1px solid rgba(236, 91, 91, 0.767) !important;
-    }
-
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(236, 91, 91, 0.767) !important;
+}
 </style>

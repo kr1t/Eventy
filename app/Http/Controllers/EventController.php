@@ -71,7 +71,7 @@ class EventController extends Controller
                 EventTicket::create($type);
             }
         }
-        return $request->all();
+        return $event;
     }
 
     /**
