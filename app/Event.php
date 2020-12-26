@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Stmt\TryCatch;
 
 class Event extends Model
 {
-    protected $appends = ['date_text', 'time_text'];
+    protected $appends = ['date_text', 'time_text', 'price_x'];
     protected $casts = [
         'tag' => 'array',
     ];
@@ -31,6 +32,22 @@ class Event extends Model
     public function tickets()
     {
         return $this->hasMany('App\EventTicket');
+    }
+
+
+    public function price()
+    {
+        return $this->hasOne('App\EventTicket');
+    }
+
+
+    public function getPriceXAttribute()
+    {
+        try {
+            return $this->price->price;
+        } catch (\Exception $e) {
+            return  '$$';
+        }
     }
 
     function DateThai($strDate)

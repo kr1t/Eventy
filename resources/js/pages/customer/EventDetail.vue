@@ -87,14 +87,23 @@
             <hr class="w-100" />
             <div id="ticket">
               <h4 class="text-main"><strong>ราคาตั๋ว</strong></h4>
-              <p>เปิดจองทั้งหมด 6 รอบ (1 รอบอยู่ได้สูงสุด 2 ชั่วโมง)</p>
-              <div v-for="ticket in tickets" :key="ticket.id" class="mb-3">
+              <p>
+                เปิดจองทั้งหมด {{ maxx }} รอบ (1 รอบอยู่ได้สูงสุด 2 ชั่วโมง)
+              </p>
+              <div
+                v-for="ticket in event.tickets"
+                :key="ticket.id"
+                class="mb-3"
+              >
                 <p class="mb-1">
                   ราคา : <span class="text-main">{{ ticket.price }} THB</span>
                 </p>
-                <div v-for="(round, index) in ticket.rounds" :key="round.id">
+                <div v-for="(round, index) in ticket.times" :key="round.id">
                   <label class="checkBoxCustom">
-                    <p class="mb-0">รอบที่ {{ index + 1 }} : {{ round }}</p>
+                    <p class="mb-0">
+                      รอบที่ {{ index + 1 }} : {{ round.start }} -
+                      {{ round.end }}
+                    </p>
                   </label>
                 </div>
               </div>
@@ -102,7 +111,8 @@
                 ** สามารถลงทะเบียนก่อนเข้างานในรอบของตัวเองได้ก่อน 30 นาที **
               </p>
               <p class="mb-0">
-                เปิดจำหน่ายบัตรวันที่ 15 สิงหาคม 2563 เวลา 10:00 น.
+                เปิดจำหน่ายบัตรวันที่ {{ event.date_text }} เวลา
+                {{ event.date_text }}
               </p>
             </div>
             <hr class="w-100" />
@@ -319,7 +329,7 @@
           <div class="col">
             <div class="card px-4 py-3 rounded-pill mx-4 border-0 shadow">
               <div class="d-flex justify-content-between align-items-center">
-                <h4 class="mb-0 text-main">ราคา 2,500 บาท</h4>
+                <h4 class="mb-0 text-main">ราคา {{ event.price_x }} บาท</h4>
                 <router-link :to="`/event/order/${id}`" class="btn btn-main">
                   <button class="btn btn-main">ซื้อตั๋ว</button>
                 </router-link>
@@ -339,12 +349,17 @@ import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
 import "hooper/dist/hooper.css";
 import PurchaseDetails from "~/components/Events/PurchaseDetails.vue";
 import { mapGetters, mapActions } from "vuex";
-
+import { maxBy } from "lodash";
 export default {
   computed: {
     ...mapGetters({
       event: "event/event",
     }),
+    maxx() {
+      if (this.event.tickets) {
+        return maxBy(this.event.tickets, "time");
+      }
+    },
   },
   data: function () {
     return {

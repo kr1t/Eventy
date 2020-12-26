@@ -146,7 +146,7 @@
                     >
                       <div>
                         <h4 class="mb-0">
-                          {{ "$ticket" }}
+                          {{ recomment.price_x }}
                           <span class="small">฿/ตั๋ว</span>
                         </h4>
                       </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\EventBoothType;
+use App\EventTicket;
 
 use Illuminate\Http\Request;
 
@@ -61,6 +62,13 @@ class EventController extends Controller
                 $type['status'] = 3;
                 $type['event_id'] = $event->id;
                 EventBoothType::create($type);
+            }
+        }
+
+        foreach ($request->prices as $type) {
+            if ($type['price']) {
+                $type['event_id'] = $event->id;
+                EventTicket::create($type);
             }
         }
         return $request->all();
