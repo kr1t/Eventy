@@ -2,14 +2,14 @@
   <div>
     <!-- banner -->
     <hooper
-      class=""
+      class="container"
       pagination="yes"
       :infiniteScroll="true"
       :autoPlay="true"
       :playSpeed="5000"
     >
       <slide v-for="slide in slides" :key="slide.id">
-        <img :src="slide.image" class="img-fluid" />
+        <img :src="slide.image" class="img-fluid center" />
       </slide>
       <hooper-pagination slot="hooper-addons"></hooper-pagination>
     </hooper>
