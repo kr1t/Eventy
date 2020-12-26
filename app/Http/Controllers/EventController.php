@@ -74,7 +74,8 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event->load(['user', 'types', 'sizes', 'extras', 'tickets']);
+        return ["item" => $event];
     }
 
     /**
