@@ -1,16 +1,13 @@
 <template>
-    <div class="container">
-        5555555
-    </div>
+  <div class="container"></div>
 </template>
 <script>
-
 export default {
-    name: "PurchaseDetails",
-    data(){
-        return{
-            show : true
-        }
-    }
-}
+  name: "PurchaseDetails",
+  data() {
+    return {
+      show: true,
+    };
+  },
+};
 </script>

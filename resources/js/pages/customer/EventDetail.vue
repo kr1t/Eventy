@@ -3,14 +3,14 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">
-          <div class="sticky-top h-full" style="top: 54px;">
+          <div class="sticky-top h-full" style="top: 54px">
             <img :src="image" />
           </div>
         </div>
-        <div class="col-12 col-lg-6 py-4 pb-4">
+        <div class="col-12 col-lg-6 py-4 pb-4" v-if="event">
           <div class="d-flex justify-content-between">
             <div>
-              <h2 class="mb-0">NctBacktoschool2020</h2>
+              <h2 class="mb-0">{{ event.title }}</h2>
               <h4><span class="small">by Withcraft</span></h4>
             </div>
             <div>
@@ -27,7 +27,7 @@
               <img src="/assets/icon/calendar.png" class="img-fluid" />
             </div>
             <div class="ml-2">
-              <p class="mb-0">15 กันยายน 2563</p>
+              <p class="mb-0">{{ event.date_text }}</p>
             </div>
           </div>
           <div class="d-flex align-items-center">
@@ -35,7 +35,7 @@
               <img src="/assets/icon/time.png" class="img-fluid" />
             </div>
             <div class="ml-2">
-              <p class="mb-0">08.00 - 15.00น.</p>
+              <p class="mb-0">{{ event.time_text }}</p>
             </div>
           </div>
           <div class="d-flex align-items-center">
@@ -43,14 +43,19 @@
               <img src="/assets/icon/pin.png" class="img-fluid" />
             </div>
             <div class="ml-2">
-              <p class="mb-0">Impact Exhibition Hall 5</p>
+              <p class="mb-0">{{ event.map_name }}</p>
             </div>
           </div>
           <div class="mt-4">
             Tags
             <div class="d-flex tag mt-2">
-              <div class="btn btn-outline-main">#Exhibition</div>
-              <div class="btn btn-outline-main">#Art</div>
+              <div
+                class="btn btn-outline-main"
+                v-for="tag in event.tag"
+                :key="tag"
+              >
+                #{{ tag }}
+              </div>
             </div>
           </div>
           <div class="mt-4 sticky-top">
@@ -76,33 +81,29 @@
             <div id="event">
               <h4 class="text-main"><strong>ข้อมูลอีเว้นท์</strong></h4>
               <p>
-                เป็นงานที่รวบรวมร้านค้า Fan art มากมายกว่าร้อยร้าน ให้มาอยู่รวม
-                กันเป็น Community มีสินค้าน่ารักๆและ สนุกไปกับบรรยากาศภายใน
-                งานที่คล้ายห้องเรียน โดยงานจัดขึ้นวันที่ 19 กันยายน 2020
-                เปิดจำหน่ายบัตรวันที่ 15 สิงหาคม 2563 เวลา 10:00 น.
-                มาตราการป้องกัน Covid-19 : 1.
-                มีการจัดระบบการคัดกรองการเข้าร่วมงาน หากพบว่ามีไข้ ไอ จาม
-                มีน้ำมูก หรือเหนื่อยหอบ หรือมีอุณหภูมิร่างกายเท่ากับหรือมากกว่า
-                37.5 องศาเซลเซียส ไม่ให้เข้าร่วมงานและแนะนำไปพบแพทย์ 2.
-                ลงทะเบียนเข้างานโดยผ่าน QRCODE ลดการสัมผัสเละประหยัด
-                ระยะเวลาในการรอคิว เพื่อลดจำนวนการต่อคิวของผู้เข้าร่วมงาน 4.
-                ผู้เข้าร่วมงานเเละผู้จำหน่ายสินค้าต้อง สวมหน้ากากผ้า, หน้ากาก
-                อนามัย หรือ face shield เว้นระยะห่างระหว่างบุคคลอย่างน้อย 1-2
-                เมตร
-                ตลอดเวลาที่อยู่ในงานและบริเวณพื้นที่รอเข้างานหรือพื้นที่รอคิว
+                {{ event.des }}
               </p>
             </div>
             <hr class="w-100" />
             <div id="ticket">
               <h4 class="text-main"><strong>ราคาตั๋ว</strong></h4>
-              <p>เปิดจองทั้งหมด 6 รอบ (1 รอบอยู่ได้สูงสุด 2 ชั่วโมง)</p>
-              <div v-for="ticket in tickets" :key="ticket.id" class="mb-3">
+              <p>
+                เปิดจองทั้งหมด {{ maxx }} รอบ (1 รอบอยู่ได้สูงสุด 2 ชั่วโมง)
+              </p>
+              <div
+                v-for="ticket in event.tickets"
+                :key="ticket.id"
+                class="mb-3"
+              >
                 <p class="mb-1">
                   ราคา : <span class="text-main">{{ ticket.price }} THB</span>
                 </p>
-                <div v-for="(round, index) in ticket.rounds" :key="round.id">
+                <div v-for="(round, index) in ticket.times" :key="round.id">
                   <label class="checkBoxCustom">
-                    <p class="mb-0">รอบที่ {{ index + 1 }} : {{ round }}</p>
+                    <p class="mb-0">
+                      รอบที่ {{ index + 1 }} : {{ round.start }} -
+                      {{ round.end }}
+                    </p>
                   </label>
                 </div>
               </div>
@@ -110,7 +111,8 @@
                 ** สามารถลงทะเบียนก่อนเข้างานในรอบของตัวเองได้ก่อน 30 นาที **
               </p>
               <p class="mb-0">
-                เปิดจำหน่ายบัตรวันที่ 15 สิงหาคม 2563 เวลา 10:00 น.
+                เปิดจำหน่ายบัตรวันที่ {{ event.date_text }} เวลา
+                {{ event.date_text }}
               </p>
             </div>
             <hr class="w-100" />
@@ -132,7 +134,16 @@
               <h4 class="text-main"><strong>แผนที่การเดินทาง</strong></h4>
               <div class="d-flex row">
                 <div class="col-12">
-                  <img src="/assets/demoMap.svg" class="img-fluid" />
+                  <iframe
+                    :src="event.google_map_url"
+                    width="600"
+                    height="450"
+                    frameborder="0"
+                    style="border: 0"
+                    allowfullscreen=""
+                    aria-hidden="false"
+                    tabindex="0"
+                  ></iframe>
                 </div>
               </div>
               <div class="d-flex mt-2 align-items-start">
@@ -141,8 +152,9 @@
                 </div>
                 <div class="ml-2">
                   <p class="mb-0">
-                    10House Art & Craft Space<br />
-                    เลขที่ 44 43 ซอยวิภาวดีรังสิต 16 เขตดินแดง กทม. 10400
+                    {{ event.map_name }}
+                    <br />
+                    {{ event.map_address }}
                   </p>
                 </div>
               </div>
@@ -151,7 +163,7 @@
                   <img src="/assets/icon/mrt.svg" class="img-fluid" />
                 </div>
                 <div class="ml-2">
-                  <p class="mb-0">MRT: สถานีรัชดาภิเษก (ทางออก 2)</p>
+                  <p class="mb-0">MRT: {{ event.mrt }}</p>
                 </div>
               </div>
               <div class="d-flex mt-2 align-items-start">
@@ -159,9 +171,7 @@
                   <img src="/assets/icon/bus.svg" class="img-fluid" />
                 </div>
                 <div class="ml-2">
-                  <p class="mb-0">
-                    รถเมล์: 73ก, 136, 137, 172s, 179, 185, 206, 514, 517, 529s
-                  </p>
+                  <p class="mb-0">รถเมล์: {{ event.bus }}</p>
                 </div>
               </div>
               <div class="d-flex mt-2 align-items-start">
@@ -170,7 +180,7 @@
                 </div>
                 <div class="ml-2">
                   <p class="mb-0">
-                    สถานที่ใกล้เคียง : คอนโด วัน รัชดา-ลาดพร้าว
+                    สถานที่ใกล้เคียง : {{ event.near_location }}
                   </p>
                 </div>
               </div>
@@ -186,41 +196,26 @@
                   <h4>Witchcraft</h4>
                   <div class="d-flex">
                     <div class="iconBtn">
-                      <img
-                        src="/assets/icon/facebook.svg"
-                        class="img-fluid"
-                      />
+                      <img src="/assets/icon/facebook.svg" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">
-                        facebook.com/Witchcraft
-                      </p>
+                      <p class="mb-0">facebook.com/Witchcraft</p>
                     </div>
                   </div>
                   <div class="d-flex">
                     <div class="iconBtn">
-                      <img
-                        src="/assets/icon/twitter.svg"
-                        class="img-fluid"
-                      />
+                      <img src="/assets/icon/twitter.svg" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">
-                        twitter.com/Witchcraft
-                      </p>
+                      <p class="mb-0">twitter.com/Witchcraft</p>
                     </div>
                   </div>
                   <div class="d-flex">
                     <div class="iconBtn">
-                      <img
-                        src="/assets/icon/instagram.svg"
-                        class="img-fluid"
-                      />
+                      <img src="/assets/icon/instagram.svg" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">
-                        instagram.com/Witchcraft
-                      </p>
+                      <p class="mb-0">instagram.com/Witchcraft</p>
                     </div>
                   </div>
                   <div class="d-flex">
@@ -228,15 +223,13 @@
                       <img src="/assets/icon/line.svg" class="img-fluid" />
                     </div>
                     <div class="ml-2">
-                      <p class="mb-0">
-                        Witchcraft
-                      </p>
+                      <p class="mb-0">Witchcraft</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div style="height: 60px;" class="d-none d-lg-block"></div>
+            <div style="height: 60px" class="d-none d-lg-block"></div>
           </div>
         </div>
       </div>
@@ -245,7 +238,11 @@
     <!-- news recomments -->
     <div
       class="container-fluid"
-      style="padding-top: 4.5rem;padding-bottom: 4.5rem;background:linear-gradient(180deg, #FCFCFC 30%, #FFF3F0 100%);"
+      style="
+        padding-top: 4.5rem;
+        padding-bottom: 4.5rem;
+        background: linear-gradient(180deg, #fcfcfc 30%, #fff3f0 100%);
+      "
     >
       <div class="container">
         <div class="row">
@@ -257,7 +254,7 @@
           <div class="col">
             <hooper class="" :settings="hooperSetting">
               <slide v-for="recomment in recomments" :key="recomment.id">
-                <div class=" p-2">
+                <div class="p-2">
                   <div class="card p-0 shadow">
                     <div class="imageBoxs w-100">
                       <img :src="recomment.image" class="img-fluid" />
@@ -291,10 +288,7 @@
                         </div>
                         <div class="d-flex align-items-center">
                           <div class="iconBtn">
-                            <img
-                              src="/assets/icon/pin.png"
-                              class="img-fluid"
-                            />
+                            <img src="/assets/icon/pin.png" class="img-fluid" />
                           </div>
                           <div class="ml-2">
                             <p class="mb-0">{{ recomment.place }}</p>
@@ -335,12 +329,9 @@
           <div class="col">
             <div class="card px-4 py-3 rounded-pill mx-4 border-0 shadow">
               <div class="d-flex justify-content-between align-items-center">
-                <h4 class="mb-0 text-main">ราคา 2,500 บาท</h4>
-                <router-link
-                  :to="`/event/order/${id}`"
-                  class="btn btn-main"
-                >
-                <button class="btn btn-main">ซื้อตั๋ว</button>
+                <h4 class="mb-0 text-main">ราคา {{ event.price_x }} บาท</h4>
+                <router-link :to="`/event/order/${id}`" class="btn btn-main">
+                  <button class="btn btn-main">ซื้อตั๋ว</button>
                 </router-link>
               </div>
             </div>
@@ -356,32 +347,44 @@
 <script>
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
 import "hooper/dist/hooper.css";
-import PurchaseDetails from "~/components/Events/PurchaseDetails.vue"
+import PurchaseDetails from "~/components/Events/PurchaseDetails.vue";
+import { mapGetters, mapActions } from "vuex";
+import { maxBy } from "lodash";
 export default {
-  data: function() {
+  computed: {
+    ...mapGetters({
+      event: "event/event",
+    }),
+    maxx() {
+      if (this.event.tickets) {
+        return maxBy(this.event.tickets, "time");
+      }
+    },
+  },
+  data: function () {
     return {
       // slides: ["images/banner-1.png", "images/banner-2.png"],
       tabs: [
         {
           title: "ข้อมูลอีเว้นท์",
-          target: "event"
+          target: "event",
         },
         {
           title: "ราคาตั๋ว",
-          target: "ticket"
+          target: "ticket",
         },
         {
           title: "ร้านค้าที่เข้าร่วม",
-          target: "store"
+          target: "store",
         },
         {
           title: "แผนที่การเดินทาง",
-          target: "map"
+          target: "map",
         },
         {
           title: "ติดต่อ",
-          target: "contact"
-        }
+          target: "contact",
+        },
       ],
       tabActive: "event",
       id: "",
@@ -395,8 +398,8 @@ export default {
             "12.00 - 13.00",
             "13.00 - 14.00",
             "14.00 - 15.00",
-            "15.00 - 16.00"
-          ]
+            "15.00 - 16.00",
+          ],
         },
         {
           price: 150,
@@ -406,35 +409,35 @@ export default {
             "12.00 - 13.00",
             "13.00 - 14.00",
             "14.00 - 15.00",
-            "15.00 - 16.00"
-          ]
-        }
+            "15.00 - 16.00",
+          ],
+        },
       ],
       stores: [
         {
           name: "@pspacefreedom",
-          image: "/user/01.svg"
+          image: "/user/01.svg",
         },
         {
           name: "@ttaemtten",
-          image: "/user/02.svg"
+          image: "/user/02.svg",
         },
         {
           name: "@johnnyscookie",
-          image: "/user/03.svg"
+          image: "/user/03.svg",
         },
         {
           name: "@dominiccjj",
-          image: "/user/04.svg"
+          image: "/user/04.svg",
         },
         {
           name: "@pigsabroox",
-          image: "/user/05.svg"
+          image: "/user/05.svg",
         },
         {
           name: "@waris_lyn",
-          image: "/user/06.svg"
-        }
+          image: "/user/06.svg",
+        },
       ],
       recomments: [
         {
@@ -446,7 +449,7 @@ export default {
             "ICSA Course 2020 by Qten teacher ICSA Course 2020 by Qten teacher ICSA Course 2020 by Qten teacher",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5"
+          place: "Impact Exhibition Hall 5",
         },
         {
           id: 2,
@@ -456,7 +459,7 @@ export default {
           title: "Music events live in concert 2020",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5"
+          place: "Impact Exhibition Hall 5",
         },
         {
           id: 3,
@@ -466,7 +469,7 @@ export default {
           title: "5.5 Shopping Day by Robinson",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5"
+          place: "Impact Exhibition Hall 5",
         },
         {
           id: 4,
@@ -476,7 +479,7 @@ export default {
           title: "Furniture Fare 2020 by IKEA",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5"
+          place: "Impact Exhibition Hall 5",
         },
         {
           id: 5,
@@ -486,8 +489,8 @@ export default {
           title: "Furmiture Festival 10.10 ตุลาคม",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5"
-        }
+          place: "Impact Exhibition Hall 5",
+        },
       ],
       hooperSetting: {
         infiniteScroll: true,
@@ -497,41 +500,43 @@ export default {
         itemsToShow: 1.25,
         breakpoints: {
           992: {
-            itemsToShow: 4.25
-          }
-        }
-      }
+            itemsToShow: 4.25,
+          },
+        },
+      },
     };
   },
-  created: function() {
+  created: function () {
     this.id = this.$route.params.id;
+    this.show(this.id);
     this.image = "/post/0" + this.id + ".png";
   },
   methods: {
-    scrollToTab: function(target) {
+    scrollToTab: function (target) {
       this.tabActive = target;
       window.$("html, body").animate(
         {
-          scrollTop: window.$("#" + target).offset().top - 100
+          scrollTop: window.$("#" + target).offset().top - 100,
         },
         500
       );
     },
-    buyTicket(){
-     this.$rounter
-    }
+    ...mapActions({ show: "event/show" }),
+    buyTicket() {
+      this.$rounter;
+    },
   },
   components: {
     Slide,
     Hooper,
     HooperPagination,
-    PurchaseDetails
-  }
+    PurchaseDetails,
+  },
 };
 </script>
 
 <style>
-.priceBottom{
+.priceBottom {
   opacity: 1;
 }
 </style>
