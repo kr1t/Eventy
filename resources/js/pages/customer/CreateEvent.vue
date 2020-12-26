@@ -178,7 +178,7 @@
                   placeholder="ราคา"
                 />
 
-                <button @click="aType()" class="button-create">+</button>
+                <button @click="aType()" class="btn button-create">+</button>
               </div>
 
               ขนาดบูธ
@@ -203,7 +203,7 @@
                   placeholder="จำนวน"
                 />
 
-                <button @click="aSize()" class="button-create">+</button>
+                <button @click="aSize()" class="btn button-create">+</button>
               </div>
 
               อุปกรณ์ที่ต้องการเพิ่ม
@@ -221,7 +221,7 @@
                   placeholder="ราคา"
                 />
 
-                <button @click="aExtra()" class="button-create">+</button>
+                <button @click="aExtra()" class="btn button-create">+</button>
               </div>
             </div>
 
@@ -247,7 +247,7 @@
               </div>
 
               <div>
-                <div class="card p-2" v-for="(p, index) in price" :key="index">
+                <div class="card p-2 mb-3" v-for="(p, index) in price" :key="index">
                   <input
                     class="input-create"
                     type="text"
@@ -280,10 +280,11 @@
                       placeholder="ราคา"
                       v-model="form.prices[index].times[i].amount"
                     />
-                    <button @click="aDetail(index)" class="button-create-text">เพิ่มเวลาอื่นๆ</button>
+                    <button @click="aDetail(index)" class="btn button-create-text">เพิ่มเวลาอื่นๆ</button>
+                    <hr>
                   </div>
                 </div>
-                <button @click="aPrice()" class="button-create-text">เพิ่มราคา</button>
+                <button @click="aPrice()" class="btn button-create-text">เพิ่มราคา</button>
               </div>
             </div>
 
@@ -318,6 +319,7 @@
                 placeholder="near_location"
                 v-model="form.near_location"
               />
+              <hr class="mb-5">
             </div>
             </div>
           </div>
@@ -444,22 +446,26 @@ img {
 .button-create{
   width: 35px;
   height: 35px;
-  border-radius: 5px;
-  border: 1px solid rgb(233, 110, 110);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  background-color: rgb(233, 110, 110);
-  color: #fff;
-  font-size: 20px;
+  background: var(--color-gradient);
+	color: #fff;
+	font-size: clamp(12px, 2vw, 14px);
+	padding-left: 15px;
+	padding-right: 20px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border-radius: 20px;
+	transition: .5s;
 }
 .button-create-text{
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid rgb(233, 110, 110);
-  margin-top: 5px;
-  margin-bottom: 5px;
-  background-color: rgb(233, 110, 110);
-  color: #fff;
+  background: var(--color-gradient);
+	color: #fff;
+	font-size: clamp(12px, 2vw, 14px);
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border-radius: 20px;
+	transition: .5s;
 }
 .title-create{
   margin-bottom: 20px;
@@ -469,7 +475,13 @@ img {
 }
 .img-upload{
   position: absolute;
-  margin: -30px -50px;
+  margin: -30px;
+}
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(236, 91, 91, 0.767) !important;
+    }
 
-  }
 </style>

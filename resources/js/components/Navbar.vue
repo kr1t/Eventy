@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar navbar-expand-lg navbar-light bg-white">
+  <header class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
     <div class="container">
       <div id="menu">
         <div id="logo">
