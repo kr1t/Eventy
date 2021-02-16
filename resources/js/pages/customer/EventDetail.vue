@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12 col-lg-6">
           <div class="sticky-top h-full" style="top: 54px">
-            <img :src="event.image1" />
+            <img :src="event.image1" class="img-full" />
           </div>
         </div>
         <div class="col-12 col-lg-6 py-4 pb-4" v-if="event">
@@ -563,5 +563,17 @@ export default {
 <style>
 .priceBottom {
   opacity: 1;
+}
+.img-full{
+  width: 100%;
+  height: auto;
+}
+.h-full img{
+  width: 100%;
+  height: auto !important;
+  z-index: -999;
+}
+.h-full{
+  z-index: -999;
 }
 </style>
