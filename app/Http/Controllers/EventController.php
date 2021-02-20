@@ -19,9 +19,11 @@ class EventController extends Controller
     {
         $events = Event::with(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases'])->latest()->paginate(10);
         return ['items' => $events];
-    }
+    } 
+    // ประกาศอีเว้นท์ใหม่ 
+    // Event เรียก DB 
 
-    /**
+    /**s
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -77,6 +79,8 @@ class EventController extends Controller
         return $event;
     }
 
+    // เซฟข้อมูลลง DB 
+    // รวมข้อมูลจากหน้าแบบฟอร์ม ส่งมาในรูปแบบรีเควส 
     /**
      * Display the specified resource.
      *
@@ -92,7 +96,8 @@ class EventController extends Controller
             $user->id;
         return ["item" => $event];
     }
-
+// event detail 
+// เช็ค id ว่าใช้อันเดียวกับที่สร้างมั้ย 
     /**
      * Show the form for editing the specified resource.
      *

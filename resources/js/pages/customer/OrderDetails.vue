@@ -72,8 +72,8 @@
                         @input="selectTicketTime(i, i_r, $event.target.value)"
                       >
                         <option value="0">0</option>
-                        <option v-for="(num, i_n) in round.amount" :key="i_n">
-                          {{ i_n + 1 }}
+                        <option v-for="num in +round.amount" :key="num">
+                          {{ num }}
                         </option>
                       </select>
                     </div>

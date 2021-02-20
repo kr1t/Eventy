@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-4">
     <div class="new-event mt-5 mb-5">
-      <h2>สร้างอีเว้นท์</h2>
+      <h2> สร้างอีเว้นท์</h2>
     </div>
 
     <div class="row">
@@ -135,11 +135,11 @@
             </div>
 
             <label class="mt-3">Tags</label>
-            <b-form-tags
+            <b-form-tags 
               input-id="tags-basic"
               tag-variant="primary"
               tag-pills
-              separator=" "
+              separator="  "
               v-model="form.tag"
             ></b-form-tags>
 
@@ -327,7 +327,7 @@
                 <input
                   class="input-create"
                   type="text"
-                  placeholder="รายละสถานที่"
+                  placeholder="รายละเอียดสถานที่"
                   v-model="form.map_address"
                 />
                 <input

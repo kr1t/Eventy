@@ -112,7 +112,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="eventyseller"
+                    placeholder="FACEBOOK PAGE"
                   />
                 </div>
                 <div class="form-group col-lg-6">
@@ -120,7 +120,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="eventyseller"
+                    placeholder="TWITTER"
                   />
                 </div>
               </div>
@@ -130,7 +130,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="eventyseller"
+                    placeholder="INSTAGRAM"
                   />
                 </div>
                 <div class="form-group col-lg-6">
@@ -138,7 +138,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="eventyseller"
+                    placeholder="YOUTUBE"
                   />
                 </div>
               </div>
@@ -148,12 +148,12 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="@eventyseller"
+                    placeholder="@LINE"
                   />
                 </div>
                 <div class="form-group col-lg-6">
                   <label>WEBSITE</label>
-                  <input type="text" class="form-control" placeholder="" />
+                  <input type="text" class="form-control" placeholder="WEBSITE" />
                 </div>
               </div>
               <div class="row">
@@ -162,7 +162,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="eventyseller"
+                    placeholder="ชื่อร้านค้า"
                   />
                 </div>
               </div>

@@ -77,4 +77,6 @@ class Event extends Model
     {
         return \Carbon\Carbon::parse($this->time)->format('h:m') . "-" . \Carbon\Carbon::parse($this->end_time)->format('h:m') . ' น.';
     }
+
+   
 }
