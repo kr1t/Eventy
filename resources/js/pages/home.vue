@@ -108,7 +108,7 @@
               <div class="p-2">
                 <div class="card p-0 shadow">
                   <div class="imageBoxs w-100">
-                    <img :src="recomment.image1" class="img-fluid" />
+                    <img :src="recomment.image1" class="img-full-center" />
                   </div>
                   <div class="p-2">
                     <div class="title">
@@ -325,6 +325,10 @@ export default {
 	border-radius: 20px;
   transition: .5s;
   font-size: 22px;
-
+}
+.img-full-center{
+  width: 100%;
+  object-fit: cover;
+  height: 180px;
 }
 </style>

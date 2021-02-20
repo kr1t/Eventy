@@ -17,6 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
+
         $events = Event::with(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases'])->latest()->paginate(10);
         return ['items' => $events];
     } 

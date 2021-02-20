@@ -21,7 +21,9 @@
                   <h2 class="text-main">
                     <strong>{{ order.title }}</strong>
                   </h2>
-                  <small class="text-muted my-3">{{ "owner by ...." }}</small>
+                  <small class="text-muted my-3"
+                    >Owner By {{ order.user.name }}</small
+                  >
                   <div class="d-flex align-items-center my-2">
                     <div class="iconBtn">
                       <img src="/assets/icon/calendar.png" class="img-fluid" />
@@ -296,7 +298,9 @@
                   <h2 class="text-main">
                     <strong>{{ order.title }}</strong>
                   </h2>
-                  <small class="text-muted my-3">{{ "owner by ...." }}</small>
+                  <small class="text-muted my-3"
+                    >Owner By {{ order.user.name }}</small
+                  >
                   <div class="d-flex align-items-center my-2">
                     <div class="iconBtn">
                       <img src="/assets/icon/calendar.png" class="img-fluid" />
@@ -362,14 +366,14 @@ export default {
   name: "OrderDetails",
   computed: {
     ...mapGetters({
-      order: "event/event",
+      order: "event/event"
     }),
     summ() {
       return sumBy(this.selectedTickets, "total_price");
     },
     summVat() {
       return (sumBy(this.selectedTickets, "total_price") * 7) / 100;
-    },
+    }
   },
   data() {
     return {
@@ -390,7 +394,7 @@ export default {
         title: "",
         date: "",
         time: "",
-        place: "",
+        place: ""
       },
       tmp_orders: [
         {
@@ -402,7 +406,7 @@ export default {
             "ICSA Course 2020 by Qten teacher ICSA Course 2020 by Qten teacher ICSA Course 2020 by Qten teacher",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
+          place: "Impact Exhibition Hall 5"
         },
         {
           id: 2,
@@ -412,7 +416,7 @@ export default {
           title: "Music events live in concert 2020",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
+          place: "Impact Exhibition Hall 5"
         },
         {
           id: 3,
@@ -422,7 +426,7 @@ export default {
           title: "5.5 Shopping Day by Robinson",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
+          place: "Impact Exhibition Hall 5"
         },
         {
           id: 4,
@@ -432,7 +436,7 @@ export default {
           title: "Furniture Fare 2020 by IKEA",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
+          place: "Impact Exhibition Hall 5"
         },
         {
           id: 5,
@@ -442,8 +446,8 @@ export default {
           title: "Furmiture Festival 10.10 ตุลาคม",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
-        },
+          place: "Impact Exhibition Hall 5"
+        }
       ],
       tickets: [
         {
@@ -454,9 +458,9 @@ export default {
             "12.00 - 13.00",
             "13.00 - 14.00",
             "14.00 - 15.00",
-            "15.00 - 16.00",
+            "15.00 - 16.00"
           ],
-          nums: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          nums: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         },
         {
           price: 150,
@@ -466,11 +470,11 @@ export default {
             "12.00 - 13.00",
             "13.00 - 14.00",
             "14.00 - 15.00",
-            "15.00 - 16.00",
+            "15.00 - 16.00"
           ],
-          nums: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        },
-      ],
+          nums: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        }
+      ]
     };
   },
   created() {
@@ -491,18 +495,18 @@ export default {
       const { data } = await axios.post("/api/purchases", {
         times: this.selectedTickets,
         event_id: this.id,
-        sum: this.summ,
+        sum: this.summ
       });
       this.$bvToast.toast("ซื้อตั๋วเข้างานสำเร็จ", {
         title: "ซื้อตั๋วเข้างานสำเร็จ",
         variant: "success",
-        solid: true,
+        solid: true
       });
       console.log(data);
     },
 
     setDetails() {
-      let res = this.tmp_orders.find((order) => {
+      let res = this.tmp_orders.find(order => {
         return order.id == this.id;
       });
       this.order = {
@@ -513,12 +517,12 @@ export default {
         title: res.title,
         date: res.date,
         time: res.time,
-        place: res.place,
+        place: res.place
       };
     },
     selectTicketTime(i, i_r, event) {
       let ticket = this.order.tickets[i];
-      let d = this.selectedTickets.findIndex((el) => el.id == i_r);
+      let d = this.selectedTickets.findIndex(el => el.id == i_r);
       console.log(d);
       if (d != -1) {
         this.selectedTickets.splice(d, 1);
@@ -531,14 +535,14 @@ export default {
         nums: event,
         price: ticket.price,
         id: i_r,
-        total_price: this.sumTicket(event, ticket.price),
+        total_price: this.sumTicket(event, ticket.price)
       };
       this.selectedTickets.push(details);
     },
     sumTicket(nums, price) {
       return +nums * +price;
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
