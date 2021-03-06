@@ -2,7 +2,7 @@
 :root{
 	--color-main : #E65D38;
 	--color-gray : #999999;
-	--color-gradient : linear-gradient(180deg, #fd4d53 0%, #fd6845 100%);
+	--color-gradient : linear-gradient(180deg, #E65D38 0%, #fd6845 100%);
 }
 html,body{
 	font-family: 'Prompt', sans-serif;

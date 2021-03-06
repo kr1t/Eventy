@@ -100,6 +100,7 @@
           <div class="">
             <div id="event">
               <h4 class="text-main"><strong>ข้อมูลอีเว้นท์</strong></h4>
+              
               <p>
                 {{ event.des }}
               </p>
@@ -108,7 +109,7 @@
             <div id="ticket">
               <h4 class="text-main"><strong>ราคาตั๋ว</strong></h4>
               <p>
-                เปิดจองทั้งหมด {{ maxx }} รอบ (1 รอบอยู่ได้สูงสุด 2 ชั่วโมง)
+                เปิดจองทั้งหมด {{ maxx }} รอบ
               </p>
               <div
                 v-for="ticket in event.tickets"
@@ -121,7 +122,7 @@
                 <div v-for="(round, index) in ticket.times" :key="round.id">
                   <label class="checkBoxCustom">
                     <p class="mb-0">
-                      รอบที่ {{ index + 1 }} : {{ round.start }} -
+                      รอบที่ {{ index + 1 }} : เวลา {{ round.start }} - 
                       {{ round.end }}
                     </p>
                   </label>

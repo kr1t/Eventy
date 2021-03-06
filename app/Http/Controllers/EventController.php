@@ -25,7 +25,7 @@ class EventController extends Controller
         return ['items' => $events, 'eventsrans' => $eventsrans];
     }
 
-    /**
+    /**s
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -81,6 +81,8 @@ class EventController extends Controller
         return $event;
     }
 
+    // เซฟข้อมูลลง DB 
+    // รวมข้อมูลจากหน้าแบบฟอร์ม ส่งมาในรูปแบบรีเควส 
     /**
      * Display the specified resource.
      *
@@ -98,7 +100,8 @@ class EventController extends Controller
             $user->id;
         return ["item" => $event, 'recent' =>   $recents];
     }
-
+// event detail 
+// เช็ค id ว่าใช้อันเดียวกับที่สร้างมั้ย 
     /**
      * Show the form for editing the specified resource.
      *
