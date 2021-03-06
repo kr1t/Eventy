@@ -91,7 +91,7 @@ class EventController extends Controller
     public function show(Event $event)
     {
         $user = request()->user();
-        $event->load(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases', 'booth_purchases.user']);
+        $event->load(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases', 'booth_purchases.user', 'prices']);
 
         $event->canDel = $event->user->id ==
             $user->id;
@@ -119,7 +119,42 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+
+        $user = $request->user();
+        $req = $request->all();
+        $req['user_id'] = $user->id;
+        // $event = Event::create($req);
+        EventBoothType::where('event_id', $event->id)->delete();
+        foreach ($request->type as $type) {
+            if ($type['name']) {
+                $type['status'] = 1;
+                $type['event_id'] = $event->id;
+                EventBoothType::create($type);
+            }
+        }
+
+        foreach ($request->size as $type) {
+            if ($type['name']) {
+                $type['status'] = 2;
+                $type['event_id'] = $event->id;
+                EventBoothType::create($type);
+            }
+        }
+        foreach ($request->extra as $type) {
+            if ($type['name']) {
+                $type['status'] = 3;
+                $type['event_id'] = $event->id;
+                EventBoothType::create($type);
+            }
+        }
+
+        foreach ($request->prices as $type) {
+            if ($type['price']) {
+                $type['event_id'] = $event->id;
+                EventTicket::create($type);
+            }
+        }
+        return $event;
     }
 
     /**

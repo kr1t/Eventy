@@ -31,6 +31,15 @@
                 <div class="iconBtn">-</div>
                 <p class="mb-0 ml-2">ลบอีเว้นท์ทิ้ง (มีแต่คุณที่มองเห็น)</p>
               </button>
+
+              <button
+                class="btn btn-warning d-flex mt-2"
+                v-if="event.canDel"
+                @click="$router.push(`/event/${event.id}/edit`)"
+              >
+                <!-- <div class="iconBtn"></div> -->
+                <p class="mb-0 ml-2">แก้ไขอีเว้นท์ (มีแต่คุณที่มองเห็น)</p>
+              </button>
             </div>
           </div>
           <div class="d-flex align-items-center">
@@ -370,38 +379,38 @@ import axios from "axios";
 export default {
   computed: {
     ...mapGetters({
-      event: "event/event",
+      event: "event/event"
     }),
     maxx() {
       if (this.event.tickets) {
         return maxBy(this.event.tickets, "time");
       }
-    },
+    }
   },
-  data: function () {
+  data: function() {
     return {
       // slides: ["images/banner-1.png", "images/banner-2.png"],
       tabs: [
         {
           title: "ข้อมูลอีเว้นท์",
-          target: "event",
+          target: "event"
         },
         {
           title: "ราคาตั๋ว",
-          target: "ticket",
+          target: "ticket"
         },
         {
           title: "ร้านค้าที่เข้าร่วม",
-          target: "store",
+          target: "store"
         },
         {
           title: "แผนที่การเดินทาง",
-          target: "map",
+          target: "map"
         },
         {
           title: "ติดต่อ",
-          target: "contact",
-        },
+          target: "contact"
+        }
       ],
       tabActive: "event",
       id: "",
@@ -415,8 +424,8 @@ export default {
             "12.00 - 13.00",
             "13.00 - 14.00",
             "14.00 - 15.00",
-            "15.00 - 16.00",
-          ],
+            "15.00 - 16.00"
+          ]
         },
         {
           price: 150,
@@ -426,35 +435,35 @@ export default {
             "12.00 - 13.00",
             "13.00 - 14.00",
             "14.00 - 15.00",
-            "15.00 - 16.00",
-          ],
-        },
+            "15.00 - 16.00"
+          ]
+        }
       ],
       stores: [
         {
           name: "@pspacefreedom",
-          image: "/user/01.svg",
+          image: "/user/01.svg"
         },
         {
           name: "@ttaemtten",
-          image: "/user/02.svg",
+          image: "/user/02.svg"
         },
         {
           name: "@johnnyscookie",
-          image: "/user/03.svg",
+          image: "/user/03.svg"
         },
         {
           name: "@dominiccjj",
-          image: "/user/04.svg",
+          image: "/user/04.svg"
         },
         {
           name: "@pigsabroox",
-          image: "/user/05.svg",
+          image: "/user/05.svg"
         },
         {
           name: "@waris_lyn",
-          image: "/user/06.svg",
-        },
+          image: "/user/06.svg"
+        }
       ],
       recomments: [
         {
@@ -466,7 +475,7 @@ export default {
             "ICSA Course 2020 by Qten teacher ICSA Course 2020 by Qten teacher ICSA Course 2020 by Qten teacher",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
+          place: "Impact Exhibition Hall 5"
         },
         {
           id: 2,
@@ -476,7 +485,7 @@ export default {
           title: "Music events live in concert 2020",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
+          place: "Impact Exhibition Hall 5"
         },
         {
           id: 3,
@@ -486,7 +495,7 @@ export default {
           title: "5.5 Shopping Day by Robinson",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
+          place: "Impact Exhibition Hall 5"
         },
         {
           id: 4,
@@ -496,7 +505,7 @@ export default {
           title: "Furniture Fare 2020 by IKEA",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
+          place: "Impact Exhibition Hall 5"
         },
         {
           id: 5,
@@ -506,8 +515,8 @@ export default {
           title: "Furmiture Festival 10.10 ตุลาคม",
           date: "15 กันยายน 2563",
           time: "08.00 - 15.00น.",
-          place: "Impact Exhibition Hall 5",
-        },
+          place: "Impact Exhibition Hall 5"
+        }
       ],
       hooperSetting: {
         infiniteScroll: true,
@@ -517,23 +526,23 @@ export default {
         itemsToShow: 1.25,
         breakpoints: {
           992: {
-            itemsToShow: 4.25,
-          },
-        },
-      },
+            itemsToShow: 4.25
+          }
+        }
+      }
     };
   },
-  created: function () {
+  created: function() {
     this.id = this.$route.params.id;
     this.show(this.id);
     this.image = "/post/0" + this.id + ".png";
   },
   methods: {
-    scrollToTab: function (target) {
+    scrollToTab: function(target) {
       this.tabActive = target;
       window.$("html, body").animate(
         {
-          scrollTop: window.$("#" + target).offset().top - 100,
+          scrollTop: window.$("#" + target).offset().top - 100
         },
         500
       );
@@ -550,14 +559,14 @@ export default {
     ...mapActions({ show: "event/show" }),
     buyTicket() {
       this.$rounter;
-    },
+    }
   },
   components: {
     Slide,
     Hooper,
     HooperPagination,
-    PurchaseDetails,
-  },
+    PurchaseDetails
+  }
 };
 </script>
 
@@ -565,16 +574,16 @@ export default {
 .priceBottom {
   opacity: 1;
 }
-.img-full{
+.img-full {
   width: 100%;
   height: auto;
 }
-.h-full img{
+.h-full img {
   width: 100%;
   height: auto !important;
   z-index: -999;
 }
-.h-full{
+.h-full {
   z-index: -999;
 }
 </style>

@@ -14,6 +14,8 @@ export default [
 
   { path: "/event", name: "Event", component: page('customer/Event.vue') },
   { path: "/event/create", name: "CreateEvent", component: page('customer/CreateEvent.vue') },
+  { path: "/event/:id/edit", name: "EditEvent", component: page('customer/CreateEvent.vue') },
+
   { path: "/event/:id", name: "EventDetail", component: page('customer/EventDetail.vue') },
   { path: "/profile", name: "Profile", component: page('customer/Profile.vue') },
   { path: "/profile/ticket", name: "Ticket", component: page('customer/Ticket.vue') },
@@ -21,8 +23,8 @@ export default [
   { path: "/profile/preorder", name: "PreOrder", component: page('customer/PreOrder.vue') },
   { path: "/profile/setting", name: "Setting", component: page('customer/Setting.vue') },
 
-  { path: "/organizer", name: "HomeOrganizer",component: page('organizer/Home.vue') },
-  { path: "/organizer/register", name: "RegisterOrganizer",component: page('organizer/Register.vue') },
+  { path: "/organizer", name: "HomeOrganizer", component: page('organizer/Home.vue') },
+  { path: "/organizer/register", name: "RegisterOrganizer", component: page('organizer/Register.vue') },
 
   { path: "/event/order/:id", name: "EventOrderDetails", component: page('customer/OrderDetails.vue') },
   { path: "/booth/detail/:id", name: "BoothDetails", component: page('shop/BoothDetails.vue') },
