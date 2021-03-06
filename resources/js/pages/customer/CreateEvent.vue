@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-4">
     <div class="new-event mt-5 mb-5">
-      <h2>สร้างอีเว้นท์</h2>
+      <h2>{{ id ? "แก้ไขอีเว้นท์" : "สร้างอีเว้นท์" }}</h2>
     </div>
 
     <div class="row">
@@ -363,7 +363,7 @@
                 <hr class="mb-2" />
 
                 <button @click="create()" class="btn button-create-text w-100">
-                  บันทึก
+                  {{ id ? "แก้ไข" : "บันทึก" }}
                 </button>
 
                 <hr class="mb-5" />
@@ -378,6 +378,8 @@
 
 <script>
 import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   data: () => ({
     form: {
@@ -389,15 +391,73 @@ export default {
       size: [{ name: "", price: "", amount: "" }],
       extra: [{ name: "", price: "" }],
       prices: [
-        { price: "", times: [{ start: "", end: "", amount: "" }], time: 1 },
-      ],
+        { price: "", times: [{ start: "", end: "", amount: "" }], time: 1 }
+      ]
     },
     type: 1,
     size: 1,
     extra: 1,
     price: 1,
+    id: false
   }),
+  computed: {
+    ...mapGetters({
+      event: "event/event"
+    })
+  },
+  created: async function() {
+    this.id = this.$route.params.id;
+    if (this.id) {
+      await this.show(this.id);
+      this.setVar();
+    }
+
+    // this.image1 = "/post/0" + this.id + ".png";
+  },
   methods: {
+    setVar() {
+      let e = this.event;
+
+      this.form.image1 = e.image1;
+      this.form.image2 = e.image2;
+      this.form.image3 = e.image3;
+      this.form.image4 = e.image4;
+      this.type = e.types.length;
+      this.form.type = e.types;
+
+      this.type = e.sizes.length;
+      this.form.size = e.sizes;
+
+      this.extra = e.extras.length;
+      this.form.extra = e.extras;
+
+      this.price = e.prices.length;
+      this.form.prices = e.prices;
+
+      console.log(this.form.price);
+
+      let a = [
+        "title",
+        "date",
+        "time",
+        "end_time",
+        "tag",
+        "des",
+        "b_start",
+        "b_end",
+        "map_name",
+        "map_address",
+        "google_map_url",
+        "mrt",
+        "bts",
+        "bus",
+        "near_location"
+      ];
+      a.map(el => {
+        this.form[el] = e[el];
+      });
+    },
+    ...mapActions({ show: "event/show" }),
     aType() {
       this.type++;
       this.form.type.push({ name: "", price: "" });
@@ -415,11 +475,18 @@ export default {
       this.form.prices.push({
         price: "",
         times: [{ start: "", end: "", amount: "" }],
-        time: 1,
+        time: 1
       });
     },
     aDetail(index) {
       this.form.prices[index].times.push({ start: "", end: "", amount: "" });
+    },
+    submit() {
+      if (this.id) {
+        return this.edit();
+      }
+
+      return this.create();
     },
     async create() {
       const { data } = await axios.post("/api/events", this.form);
@@ -427,7 +494,17 @@ export default {
       this.$bvToast.toast("สร้าง อีเว้นท์สำเร็จ", {
         title: "สร้าง อีเว้นท์สำเร็จ",
         variant: "success",
-        solid: true,
+        solid: true
+      });
+      console.log(data);
+    },
+    async edit() {
+      const { data } = await axios.put(`/api/event/${this.id}`, this.form);
+      this.$router.push("/event/" + data.id);
+      this.$bvToast.toast("แก้ไข อีเว้นท์สำเร็จ", {
+        title: "แก้ไข อีเว้นท์สำเร็จ",
+        variant: "success",
+        solid: true
       });
       console.log(data);
     },
@@ -437,8 +514,8 @@ export default {
       form.append("uploadFileObj", file);
       const { data } = await axios.post("/api/image/upload", form);
       this.form[name] = data.url;
-    },
-  },
+    }
+  }
 };
 </script>
 

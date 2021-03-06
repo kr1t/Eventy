@@ -47,6 +47,11 @@ class Event extends Model
         return $this->hasOne('App\EventTicket');
     }
 
+    public function prices()
+    {
+        return $this->hasMany('App\EventTicket');
+    }
+
 
     public function getPriceXAttribute()
     {
