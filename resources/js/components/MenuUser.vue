@@ -20,6 +20,12 @@
             <h6>ข้อมูลส่วนตัว</h6>
           </li>
         </router-link>
+        <router-link exact to="/profile/myevent">
+          <li>
+            <img src="/assets/icon/ticket.svg" />
+            <h6>อีเว้นท์ของฉัน</h6>
+          </li>
+        </router-link>
         <router-link exact to="/profile/ticket">
           <li>
             <img src="/assets/icon/ticket.svg" />
@@ -56,19 +62,19 @@
 </template>
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
-      active: false,
+      active: false
     };
   },
   methods: {
-    menuActive: function () {
+    menuActive: function() {
       this.active = !this.active;
-    },
-  },
+    }
+  }
 };
 </script>
-<style type="text/css" >
+<style type="text/css">
 .menuLeft {
   position: fixed;
   left: 0px;

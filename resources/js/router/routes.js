@@ -18,12 +18,15 @@ export default [
 
   { path: "/event/:id", name: "EventDetail", component: page('customer/EventDetail.vue') },
   { path: "/profile", name: "Profile", component: page('customer/Profile.vue') },
+  { path: "/profile/MyEvent", name: "MyEvent", component: page('organizer/MyEvent.vue') },
   { path: "/profile/ticket", name: "Ticket", component: page('customer/Ticket.vue') },
   { path: "/profile/notification", name: "Notification", component: page('customer/Notification.vue') },
   { path: "/profile/preorder", name: "PreOrder", component: page('customer/PreOrder.vue') },
   { path: "/profile/setting", name: "Setting", component: page('customer/Setting.vue') },
 
   { path: "/organizer", name: "HomeOrganizer", component: page('organizer/Home.vue') },
+  { path: "/boothSetting", name: "HomeBooth", component: page('organizer/Home.vue') },
+
   { path: "/organizer/register", name: "RegisterOrganizer", component: page('organizer/Register.vue') },
 
   { path: "/event/order/:id", name: "EventOrderDetails", component: page('customer/OrderDetails.vue') },

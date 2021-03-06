@@ -499,7 +499,10 @@ export default {
       console.log(data);
     },
     async edit() {
-      const { data } = await axios.put(`/api/event/${this.id}`, this.form);
+      const { data } = await axios.post(
+        `/api/event/${this.id}?_method=put`,
+        this.form
+      );
       this.$router.push("/event/" + data.id);
       this.$bvToast.toast("แก้ไข อีเว้นท์สำเร็จ", {
         title: "แก้ไข อีเว้นท์สำเร็จ",

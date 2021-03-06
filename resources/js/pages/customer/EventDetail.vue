@@ -273,7 +273,7 @@
         <div class="row">
           <div class="col">
             <hooper class="" :settings="hooperSetting">
-              <slide v-for="recomment in recomments" :key="recomment.id">
+              <slide v-for="recomment in recents" :key="recomment.id">
                 <div class="p-2">
                   <div class="card p-0 shadow">
                     <div class="imageBoxs w-100">
@@ -378,7 +378,8 @@ import axios from "axios";
 export default {
   computed: {
     ...mapGetters({
-      event: "event/event"
+      event: "event/event",
+      recents: "event/recents"
     }),
     maxx() {
       if (this.event.tickets) {
@@ -549,7 +550,9 @@ export default {
     async del() {
       var r = confirm("คุณแน่ใจที่จะลบใช่หรือไม่");
       if (r == true) {
-        const { data } = await axios.delete("/api/events/" + this.id);
+        const { data } = await axios.post(
+          "/api/events/?_method=delete" + this.id
+        );
         console.log(data);
         this.$router.push("/home");
       } else {

@@ -21,6 +21,12 @@ class BoothPurchase extends Model
         return $this->belongsTo('App\Event');
     }
 
+
+    // public function type()
+    // {
+    //     return $this->belongsTo('App\EventBoothType');
+    // }
+
     public function user()
     {
         return $this->belongsTo('App\User');

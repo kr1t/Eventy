@@ -19,7 +19,10 @@ class EventController extends Controller
     {
 
         $events = Event::with(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases'])->latest()->paginate(10);
-        return ['items' => $events];
+
+        $eventsrans = Event::with(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases'])->inRandomOrder()->paginate(10);
+
+        return ['items' => $events, 'eventsrans' => $eventsrans];
     }
 
     /**
@@ -89,9 +92,11 @@ class EventController extends Controller
         $user = request()->user();
         $event->load(['user', 'types', 'sizes', 'extras', 'tickets', 'booth_purchases', 'booth_purchases.user', 'prices']);
 
+
+        $recents = Event::inRandomOrder()->limit(10)->get();
         $event->canDel = $event->user->id ==
             $user->id;
-        return ["item" => $event];
+        return ["item" => $event, 'recent' =>   $recents];
     }
 
     /**

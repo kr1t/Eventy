@@ -5,9 +5,9 @@
     <div class="content-menuUser">
       <div class="card p-3">
         <h2><span>ตั๋วของฉัน</span></h2>
-        <table class="table table-responsive">
+        <table class="table">
           <thead class="text-center">
-            <tr>
+            <tr class="text-left">
               <th>ลำดับ</th>
               <th>ชื่องาน</th>
               <th>ผู้จัด</th>
@@ -40,7 +40,7 @@
 import { mapActions, mapGetters } from "vuex";
 import MenuUser from "~/components/MenuUser.vue";
 export default {
-  data: function () {
+  data: function() {
     return {
       profile: {
         user: "@dominiccjj",
@@ -54,25 +54,25 @@ export default {
         ig: "@dominiccjj",
         yt: "",
         ln: "",
-        ws: "www.dominiccjj.com",
-      },
+        ws: "www.dominiccjj.com"
+      }
     };
   },
   components: {
-    MenuUser,
+    MenuUser
   },
   computed: {
     ...mapGetters({
-      p: "purchase/purchases",
-    }),
+      p: "purchase/purchases"
+    })
   },
   methods: {
     ...mapActions({
-      fetch: "purchase/fetch",
-    }),
+      fetch: "purchase/fetch"
+    })
   },
   created() {
     this.fetch();
-  },
+  }
 };
 </script>

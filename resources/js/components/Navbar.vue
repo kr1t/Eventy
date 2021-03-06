@@ -30,17 +30,17 @@
             <router-link class="nav-link" to="/event"> อีเว้นท์ </router-link>
           </li>
 
-          <li class="nav-item">
-            <router-link class="nav-link" to="/booth/detail/:id">
+          <!-- <li class="nav-item">
+            <router-link class="nav-link" to="/boothSetting">
               <span class="d-none d-lg-inline-block">สำหรับ</span>ร้านค้า
             </router-link>
-          </li>
+          </li> -->
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link class="nav-link" to="/organizer">
               <span class="d-none d-lg-inline-block">สำหรับ</span>ผู้จัดงาน
             </router-link>
-          </li>
+          </li> -->
 
           <li v-if="user" class="nav-item dropdown">
             <a
@@ -58,12 +58,9 @@
               {{ user.name }}
             </a>
             <div class="dropdown-menu">
-              <router-link
-                :to="{ name: 'settings.profile' }"
-                class="dropdown-item pl-3"
-              >
+              <router-link :to="'/organizer'" class="dropdown-item pl-3">
                 <fa icon="cog" fixed-width />
-                {{ $t("settings") }}
+                ตั้งค่า
               </router-link>
 
               <div class="dropdown-divider" />
@@ -97,15 +94,15 @@ import LocaleDropdown from "./LocaleDropdown";
 
 export default {
   components: {
-    LocaleDropdown,
+    LocaleDropdown
   },
 
   data: () => ({
-    appName: window.config.appName,
+    appName: window.config.appName
   }),
 
   computed: mapGetters({
-    user: "auth/user",
+    user: "auth/user"
   }),
 
   methods: {
@@ -115,8 +112,8 @@ export default {
 
       // Redirect to login.
       this.$router.push({ name: "login" });
-    },
-  },
+    }
+  }
 };
 </script>
 
