@@ -1,6 +1,6 @@
 <template>
   <div id="eventPage">
-    <div class="container">
+    <div class="container " style="padding-botton:200px;">
       <div class="row">
         <div class="col-12 col-lg-6">
           <div class="sticky-top h-full" style="top: 54px">
@@ -100,7 +100,7 @@
           <div class="">
             <div id="event">
               <h4 class="text-main"><strong>ข้อมูลอีเว้นท์</strong></h4>
-              
+
               <p>
                 {{ event.des }}
               </p>
@@ -108,9 +108,7 @@
             <hr class="w-100" />
             <div id="ticket">
               <h4 class="text-main"><strong>ราคาตั๋ว</strong></h4>
-              <p>
-                เปิดจองทั้งหมด {{ maxx }} รอบ
-              </p>
+              <p>เปิดจองทั้งหมด {{ maxx }} รอบ</p>
               <div
                 v-for="ticket in event.tickets"
                 :key="ticket.id"
@@ -122,7 +120,7 @@
                 <div v-for="(round, index) in ticket.times" :key="round.id">
                   <label class="checkBoxCustom">
                     <p class="mb-0">
-                      รอบที่ {{ index + 1 }} : เวลา {{ round.start }} - 
+                      รอบที่ {{ index + 1 }} : เวลา {{ round.start }} -
                       {{ round.end }}
                     </p>
                   </label>
@@ -278,7 +276,7 @@
                 <div class="p-2">
                   <div class="card p-0 shadow">
                     <div class="imageBoxs w-100">
-                      <img :src="recomment.image" class="img-fluid" />
+                      <img :src="recomment.image1" class="img-fluid" />
                     </div>
                     <div class="p-2">
                       <div class="title">
@@ -304,7 +302,7 @@
                             />
                           </div>
                           <div class="ml-2">
-                            <p class="mb-0">{{ recomment.time }}</p>
+                            <p class="mb-0">{{ recomment.time_text }}</p>
                           </div>
                         </div>
                         <div class="d-flex align-items-center">
@@ -312,7 +310,7 @@
                             <img src="/assets/icon/pin.png" class="img-fluid" />
                           </div>
                           <div class="ml-2">
-                            <p class="mb-0">{{ recomment.place }}</p>
+                            <p class="mb-0">{{ recomment.map_name }}</p>
                           </div>
                         </div>
                       </div>
@@ -321,7 +319,7 @@
                       >
                         <div>
                           <h4 class="mb-0">
-                            {{ recomment.price }}
+                            {{ recomment.price_x }}
                             <span class="small">฿/ตั๋ว</span>
                           </h4>
                         </div>

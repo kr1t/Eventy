@@ -9,7 +9,11 @@
       :playSpeed="5000"
     >
       <slide v-for="slide in rands" :key="slide.id">
-        <img :src="slide.image1" class="img-fluid center" />
+        <img
+          :src="slide.image1"
+          class="img-fluid center"
+          style="height:250px; object-fit:cover;"
+        />
       </slide>
       <hooper-pagination slot="hooper-addons"></hooper-pagination>
     </hooper>
@@ -33,7 +37,10 @@
               <div class="p-2">
                 <div class="card p-0 shadow">
                   <div class="imageBoxs w-100">
-                    <img :src="recomment.image1" class="img-fluid" />
+                    <img
+                      :src="recomment.image1"
+                      class="img-fluid img-full-center"
+                    />
                   </div>
                   <div class="p-2">
                     <div class="title">
